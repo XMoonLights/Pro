@@ -1,0 +1,109 @@
+.jumbotron{
+	background-color: #FFFFFF;
+	height: 202px;
+	padding:2px 0 2px 0;
+	text-align: center;
+}
+.navbar{
+	padding-left: 25%;
+}
+.content{
+	margin-top: -20px;
+	padding-bottom: 40px;
+	background-color: #5CB85C;
+}
+.row{
+	margin-left: 8%;
+	margin-right: 8%;
+}
+.lunbo{
+	/*不需要设定高度height，它其中的内容会自然的填充高度 ,这样就可以让div的高度随着内容的多少变动，实现响应式*/
+	margin-top: 20px;
+	padding: 25px 42.5px;
+	background-color: #FFFFFF;
+}
+
+#myCarousel .item img{
+	width:100%;
+}
+
+.carousel-control{
+	text-align: center;
+	font-size: 50px;
+}
+.content_left{
+	/*不需要设定高度height，它其中的内容会自然的填充高度*/
+	margin-top: 20px;
+}
+.content_right{
+	/*不需要设定高度height，它其中的内容会自然的填充高度*/
+	margin-top: 20px;
+	padding: 20px 25px;
+	background-color: #FFFFFF;
+}
+.article1{
+	width: 100%;
+	height: 279px;
+	background-color: #FFFFFF;
+	padding: 25px 20px;
+}
+.article_head{
+	text-align: center;
+}
+.article_body{
+	margin: 20px 0px;
+}
+.article_footer{
+	text-align: center;
+	margin-bottom: 0px;
+}
+.article2{
+	margin-top: 20px;
+	width: 100%;
+	height: 279px;
+	background-color: #FFFFFF;
+	padding: 25px 20px;
+}
+.article3_font{
+	padding-bottom: 10px;
+	border-bottom: 1px solid #E3E3E3;
+}
+.article6 .article_li{
+	list-style: none;
+	font-size: 18px;
+}
+.article7 ul{
+	padding: 0 0 0 20px;
+}
+.article7 .article_li{
+	font-size: 18px;
+}
+.article_li_span{
+	color: #AC2925;
+}
+a:hover{
+	text-decoration: none;
+}
+.footer{
+	width: 100%;
+	height: 68px;
+	background-color: #444444;
+	padding: 20px 0;
+}
+.footer_article{
+	text-align: center;
+}
+#bar_list{
+	position: relative;
+}
+.bar_list{
+	width: 220px;
+	height: 100px;
+	display: none;
+	/*z-index: 10;*/
+	background-color: #D4D4D4;
+	position: absolute;
+}
+/*#bar_list:hover .bar_list{
+	display: block;
+}*/

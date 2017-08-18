@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html ng-app="personState">
+
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="https://necolas.github.io/normalize.css/4.1.1/normalize.css" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/index.css" />
+		<script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
+		<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+		<title></title>
+		<style type="text/css">
+			#sidebar {
+				position: fixed;
+				top: 0px;
+				right: -230px;
+				bottom: 0px;
+				width: 230px;
+				background-color: #555;
+				transition: right 0.5s;
+				/*定义动画的时间*/
+			}
+			
+			#sidebar ul {
+				list-style: none;
+				margin: 0px auto;
+				padding: 0px;
+			}
+			
+			#sidebar ul li a {
+				display: block;
+				padding: 20px;
+				text-decoration: none;
+				color: #eee;
+			}
+			
+			#sidebar ul li a:hover {
+				background-color: #666;
+			}
+			
+			#topBtn {
+				position: fixed;
+				right: 10px;
+				bottom: 10px;
+				border: 0px;
+				padding: 5px;
+				border-radius: 5px;
+				color: #eee;
+				background-color: #555;
+			}
+			nav ul li:hover div.bar_list{
+				display: block;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="main-wrapper">
+			<header>
+				<nav>
+					<!--<div class="logo">
+						<a href="#"></a>
+					</div>-->
+					<ul>
+						<li>
+							<a href="#">首页</a>
+						</li>
+						<li id="my-projiect">
+							<a href="#">关于我</a>
+							<div class="bar_list">
+								<ul>
+								<li>
+									<a href="zoo.html">bootstrap页面架构</a>
+								</li>
+								<li>
+									<a href="">毕业设计</a>
+								</li>
+								</ul>
+							</div>
+						</li>
+						<li id="sidebar-trigger">
+							<a href="#">侧边框</a>
+						</li>
+					</ul>
+				</nav>
+				<div class="banner">
+					<div class="inner">
+						<h1>徐能</h1>
+						<h3>2016.6 - 2017.3 苏州亚旭电子<br />
+主要是负责公司网站的页面重构，实现重点页面的前端开发，尤其考虑不同屏幕分辨率不同浏览器下的页面效果一致性问题；设计并实现全局的前端组件如toast消息提示框，模态框，选项卡，设计并实现全局的CSS文件管理方式。除前端开发之外，由于项目需要还参与了部分页面的后台业务逻辑开发，使用了ASP.NET，AJAX页面异步更新等技术。项目的web前端使用了部分BootStrap和原生H5、CSS等技术。整个网站PC端和移动端的效果呈现及技术实现，以原生HTML、CSS和js为基础，辅以适当的BootStrap和jQuery技术。</p>
+						<button type="button">了解我</button>
+					</div>
+				</div>
+			</header>
+			<section>
+				<section class="green-section">
+					<div class="wrapper">
+						<div>
+							<h2>技能</h2>
+							<div class="hr"></div>
+							<h4>精通HTML、CSS，熟练页面架构和布局，熟悉JavaScript、Ajax等前端技术；熟练BootStrap的引用、以及jQuery、angularJS等开发框架；熟悉jQueryMobile移动前端框架；熟练使用HBuider、Dreamweaver、Sublime Text等相关开发工具。熟悉具体软件开发项目的各个环节，包括软件工程原理，测试，项目管理等；熟练运用项目管理工具，包括SVN代码管理相关文档的纂写（例如技术文档，工作总结和汇报等）。</h4>
+							<h4>有网页重构的经验；熟悉响应式开发，能够使用BootStrap实现跨平台；使用过nodejs的express框架开发小程序；通过使用PHP以及smarty模板引擎、MySQL和前端框架（bootstrap）实现完成了毕业设计。</h4>
+						</div>
+						<div class="box-show">
+							<ul id="clearfloat">
+								<li>
+									<a><img src="img/tips01.jpg">
+										<div class="box-tips">HTML5</div>
+									</a>
+								</li>
+								<li>
+									<a><img src="img/tips02.jpg">
+										<div class="box-tips">JAVASCRIPT</div>
+									</a>
+								</li>
+								<li>
+									<a><img src="img/tips03.jpg">
+										<div class="box-tips">CSS3</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+				<section class="gray-section">
+					<div class="article-preview">
+						<div class="img-section">
+							<img src="img/pic01.jpg">
+						</div>
+						<div class="text-section">
+							<h2>Bootstrap框架编写的页面</h2>
+							<p>页面方面使用了Bootstrap的栅格式响应布局、巨幕、响应式的导航栏以及轮播。个人感觉在组件的使用方面，Bootstrap提供的组件用户体验不是很好，但其在CSS样式引用这块凸显了优势...</p>
+							<a class="btn btn-info" href="zoo.html">进入浏览</a>
+						</div>
+					</div>
+					<div class="article-preview">
+						<div class="text-section">
+							<h2>angularJs项目</h2>
+							<p>其四大核心特性：MVC设计模式、双向数据绑定、指令系统、模块化</p>
+						</div>
+						<div class="img-section">
+							<img src="img/pic02.jpg">
+						</div>
+					</div>
+					<div class="article-preview">
+						<div class="img-section">
+							<img src="img/pic03.jpg">
+						</div>
+						<div class="text-section">
+							<h2>Vue</h2>
+							<p>一种轻量级的MVVP前端开发框架...</p>
+						</div>
+					</div>
+				</section>
+				<section class="purple-section" ng-controller="cardLists">
+					<div class="heading-wrapper">
+						<h2>每日动态</h2>
+						<div class="hr"></div>
+						<p>通过简单的使用angularJs 完成一个发文的功能，用来展示每天的个人动态。比方说，自己做了什么有趣的事、自己当天的心情或感受是咋样的、自己今天的所见及所得有哪些...</p>
+					</div>
+					<div class="card-group clearfix">
+						<ul class="card-lists">
+							<li class="card">
+								<h3>高兴</h3>
+								<p>有人说，“努力”与“拥有”是人生一左一右的两道风景。但我以为，人生最美最不能逊色的风景应该是努力。努力是人生的一种精神状态，是对生命的一种赤子之情。努力是拥有之母，拥有是努力之子。</p>
+							</li>
+							<li class="card">
+								<h3>无所事事</h3>
+								<p>有人说，“努力”与“拥有”是人生一左一右的两道风景。但我以为，人生最美最不能逊色的风景应该是努力。努力是人生的一种精神状态，是对生命的一种赤子之情。努力是拥有之母，拥有是努力之子。</p>
+							</li>
+							<li class="card">
+								<h3>和朋友看了一场电影！</h3>
+								<p>有人说，“努力”与“拥有”是人生一左一右的两道风景。但我以为，人生最美最不能逊色的风景应该是努力。努力是人生的一种精神状态，是对生命的一种赤子之情。努力是拥有之母，拥有是努力之子。</p>
+							</li>
+							<li class="card">
+								<h3>又是一年毕业季，只是里面包括我！</h3>
+								<p>有人说，“努力”与“拥有”是人生一左一右的两道风景。但我以为，人生最美最不能逊色的风景应该是努力。努力是人生的一种精神状态，是对生命的一种赤子之情。努力是拥有之母，拥有是努力之子。</p>
+							</li>
+							<li class="card">
+								<h3>要开始找工作，养活自己了！！！</h3>
+								<p>有人说，“努力”与“拥有”是人生一左一右的两道风景。但我以为，人生最美最不能逊色的风景应该是努力。努力是人生的一种精神状态，是对生命的一种赤子之情。努力是拥有之母，拥有是努力之子。</p>
+							</li>
+							<li class="card">
+								<h3>压力大，心累...</h3>
+								<p>有人说，“努力”与“拥有”是人生一左一右的两道风景。但我以为，人生最美最不能逊色的风景应该是努力。努力是人生的一种精神状态，是对生命的一种赤子之情。努力是拥有之母，拥有是努力之子。</p>
+							</li>
+							<li class="card" ng-repeat="item in cards">
+								<h3>{{item.title}}</h3>
+								<p>{{item.content}}</p>
+							</li>
+						</ul>
+					</div>
+					<div class="add-card-btn">
+						<a class="btn btn-primary" data-toggle="modal" data-target="#myModal">发表更多动态...</a>
+						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+										<h4 class="modal-title" id="myModalLabel">个人动态</h4>
+									</div>
+									<div class="modal-body">
+										<div class="state-title">
+											<input type="text" id="state-title" placeholder="标题" ng-model="title" />
+										</div>
+										<div class="state-content">
+											<textarea rows="3" id="state-content" placeholder="描述" ng-model="content"></textarea>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+										<button id="submit-btn" type="button" class="btn btn-primary" data-dismiss="modal" ng-click="add()">提交更改</button>
+									</div>
+								</div>
+								<!-- /.modal-content -->
+							</div>
+							<!-- /.modal -->
+						</div>
+					</div>
+				</section>
+			</section>
+			<footer>
+				<div class="share-group">
+					<ul>
+						<li>
+							<a href="#">item</a>
+						</li>
+						<li>
+							<a href="#">item</a>
+						</li>
+						<li>
+							<a href="#">item</a>
+						</li>
+						<li>
+							<a href="#">item</a>
+						</li>
+						<li>
+							<a href="#">item</a>
+						</li>
+					</ul>
+					<div class="copy">
+						&copy 某某某
+					</div>
+				</div>
+			</footer>
+		</div>
+		<div id="sidebar">
+			<ul>
+				<li>
+					<a href="#">首页</a>
+				</li>
+				<li>
+					<a href="#">关于我</a>
+					<ul id="show-project" style="display: none;">
+						<li><a href="zoo.html">项目一</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#">简介</a>
+				</li>
+			</ul>
+		</div>
+		<button type="button" id="topBtn">返回顶部</button>
+		<script type="text/javascript" src="js/index.js"></script>
+	</body>
+	<script type="text/javascript">
+		angular.module("personState", [])
+			.controller("cardLists", function($scope) {
+				$scope.title = "";
+				$scope.content = "";
+				$scope.cards = [];
+				$scope.add = function() {
+					var state = new function() {
+						this.title = $scope.title;
+						this.content = $scope.content;
+					}
+					$scope.cards.push(state);
+				}
+			})
+	</script>
+
+</html>

@@ -1,0 +1,382 @@
+header nav {
+	height: 50px;
+	background-color: transparent; //表示背景透明
+	overflow: hidden;
+}
+
+
+/*----------------清除ul下的浮动---------------------*/
+
+nav ul:before,
+nav ul:after {
+	content: "";
+	display: block;
+}
+
+na ul:after {
+	clear: both;
+}
+
+
+/*-----------------------------------------*/
+
+nav .logo {
+	float: left;
+	line-height: 50px;
+	text-align: center;
+	font-size: 20px;
+	font-weight: 700;
+	letter-spacing: 1px; //字面解释为:文字之间的间距
+}
+
+nav .logo a {
+	color: #fefefe;
+	display: block;
+	padding: 0px 10px;
+	text-decoration: none;
+}
+nav ul{
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+nav>ul {
+	float: right;
+}
+
+nav>ul>li {
+	float: left;
+	line-height: 50px;
+	text-align: center;
+}
+
+nav ul li a {
+	display: block;
+	padding: 0px 10px;
+	text-decoration: none;
+}
+
+nav ul li a:hover {
+	background-color: #666;
+}
+.bar_list {
+    width: 220px;
+    height: 100px;
+    display: none;
+    z-index: 10;
+    background-color: #D4D4D4;
+    position: absolute;
+    right: 62px;
+    padding-top: 0px; 
+    margin-top: 0px; 
+    padding-bottom: 0px; 
+    margin-bottom: 0px;
+}
+/*---------------------banner----------------------*/
+
+.banner {
+	height: 600px;
+	background-color: transparent;
+}
+
+.banner .inner {
+	width: 50%;
+	text-align: center;
+	margin: 0px auto;
+	position: relative;
+	top: 160px;
+}
+
+.banner .inner h1 {
+	margin: 0px 35%;
+	padding: 10px;
+	border-top: 2px solid #555;
+	border-bottom: 2px solid #555;
+}
+
+.banner .inner p {
+	line-height: 30px;
+	margin: 30px;
+}
+
+.banner .inner button {
+	border: none;
+	border-radius: 3px;
+	background-color: #15EDED;
+	color: #fefefe;
+	padding: 15px 30px;
+}
+
+
+/*----------------green-section------------------*/
+
+.green-section {
+	background-color: #0FD5A4;
+	/*text-align: center;*/
+}
+
+.green-section .wrapper {
+	max-width: 1080px;
+	margin: 0px auto;
+	padding: 100px 0px;
+}
+
+.green-section .wrapper h2 {
+	text-align: center;
+	margin: 0px;
+}
+
+.green-section .wrapper .hr {
+	width: 60%;
+	border: 1px solid #28AE9B;
+	margin: 20px auto;
+}
+
+.green-section .wrapper p {
+	font-size: 13px;
+	line-height: 30px;
+	margin: 20px;
+}
+.green-section .wrapper h4{
+	text-align: none;
+}
+
+/*.green-section .wrapper .icon{
+				display: inline-block;
+				width: 80px;
+				height: 80px;
+				border: 1px solid #28AE9B;
+				transform: rotate(45deg);
+				margin: 30px 40px;
+			}*/
+
+.box-show {
+	margin-top: 24px;
+	height: 160px;
+	position: relative;
+	padding: 0 2px;
+	text-align: center;
+}
+#clearfloat{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	zoom: 1;
+}
+#clearfloat:after {
+    display: block;
+    clear: both;
+    content: "";
+    visibility: hidden;
+    height: 0;
+}
+.box-show li{
+	position: relative;
+    display: inline-block;
+    height: 160px;
+    width: 190px;
+    background: #abbcc3;
+    border-radius: 4px;
+    margin-left: 58px;
+    overflow: hidden;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.5);
+}
+.box-show li:nth-child(1) {
+    margin: 0;
+}
+.box-show li a {
+    text-decoration: none;
+    display: block;
+    color: #FFF;
+}
+.box-show li img {
+    width: 190px;
+    height: 160px;
+}
+.box-tips {
+    position: absolute;
+    top: 160px;
+    left: 0;
+    /*bottom: -160px;*/
+    background: rgba(0,0,0,0.8);
+    height: 100%;
+    width: 100%;
+    color: #e8432e;
+    text-align: center;
+    font-size: 30px;
+    line-height: 160px;
+    /*transition: all 0.5s;*/
+}
+
+
+/*-----------------gray-section-----------------*/
+
+.gray-section .article-preview {
+	background-color: #131A18;
+}
+
+
+/*nth-child()选择器。当参数为odd时，表示奇数选择器；当参数为even时，表示偶数选择器*/
+
+.gray-section .article-preview:nth-child(odd) {
+	background-color: #212624;
+}
+
+.gray-section .article-preview:before,
+.gray-section .article-preview:after {
+	content: "";
+	display: block;
+}
+
+.gray-section .article-preview:after {
+	clear: both;
+}
+
+.gray-section .article-preview>div {
+	float: left;
+}
+
+.gray-section .img-section {
+	width: 45%;
+	font-size: 0px;
+	/*引用图片时,下方会有一段留白.该属性可以避免*/
+}
+
+.gray-section .img-section img {
+	width: 100%;
+}
+
+.gray-section .text-section {
+	width: 55%;
+	color: #eee;
+	max-height: 60%;
+}
+
+.gray-section .text-section h2 {
+	margin: 30px;
+	padding: 0px;
+}
+
+.gray-section .text-section p {
+	margin: 30px;
+	padding: 0px;
+	font-size: 13px;
+	line-height: 30px;
+	letter-spacing: 1px;
+}
+.gray-section .text-section a{
+	margin-left: 30px;
+}
+
+/*-----------------purple-section-----------------*/
+.purple-section {
+	padding: 100px 20%;
+	background-color: #967DC5;
+}
+
+.purple-section .heading-wrapper {
+	text-align: center;
+	margin: 0px auto;
+}
+
+.purple-section h2 {
+	margin: 0px;
+}
+
+.purple-section .heading-wrapper .hr {
+	width: 60%;
+	border: 1px solid #7F5CDD;
+	margin: 20px auto;
+}
+
+.purple-section .heading-wrapper p {
+	font-size: 18px;
+	line-height: 30px;
+	letter-spacing: 1px;
+}
+.purple-section .card-lists{
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+.purple-section .add-card-btn{
+	/*text-align: center;*/
+	padding: 20px 0px;
+}
+.purple-section .add-card-btn a{
+	width: 100%;
+	padding: 15px 0px;
+}
+
+.state-title input{
+	display: block;
+width: 100%;
+border: none;
+padding: 15px 0px;
+border-bottom: 1px solid #28AE9B;
+font-size: 20px;
+}
+.state-content textarea{
+	display: block;
+width: 100%;
+border: none;
+padding: 15px 0px;
+font-size: 20px;
+}
+
+/*----------------清除浮动-------------------*/
+
+.clearfix:before,
+.clearfix:after {
+	content: "";
+	display: block;
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+
+/*--------------------------------------------*/
+
+.card {
+	margin: 10px 0px;
+	padding: 15px 10px;
+}
+
+
+/*------------------footer-------------------*/
+
+.share-group {
+	background-color: #333;
+}
+
+.share-group ul {
+	text-align: center;
+	margin: 0 auto;
+	padding: 0px;
+}
+
+.share-group ul li {
+	display: inline-block;
+}
+
+.share-group ul li a {
+	display: block;
+	text-decoration: none;
+	padding: 10px;
+}
+
+.copy {
+	text-align: center;
+	padding: 10px 0px 20px 0px;
+}
+
+
+/*---------------------------------------------------*/
+
+.main-wrapper {
+	background: #444 url(../img/banner.jpg);
+	background-attachment: fixed;
+	background-position: center;
+}
