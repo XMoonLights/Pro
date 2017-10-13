@@ -1,0 +1,65 @@
+[
+	{
+		"imgURL": "../images/con-1.jpg",
+		"name": "angle",
+		"alisa": "网络歌手",
+		"email": "912114549@qq.com",
+		"type":"A"
+	},
+	{
+		"imgURL": "../images/con-2.jpg",
+		"name": "bralana",
+		"alisa": "自由舞者",
+		"email": "912114549@qq.com",
+		"type":"B"
+	},
+	{
+		"imgURL": "../images/con-3.jpg",
+		"name": "bady",
+		"alisa": "钢琴老师",
+		"email": "912114549@qq.com",
+		"type":"B"
+	},
+	{
+		"imgURL": "../images/con-2.jpg",
+		"name": "苍老师",
+		"alisa": "电影巨星",
+		"email": "912114549@qq.com",
+		"type":"C"
+	},
+	{
+		"imgURL": "../images/con-4.jpg",
+		"name": "成龙",
+		"alisa": "国际影星",
+		"email": "912114549@qq.com",
+		"type":"C"
+	},
+	{
+		"imgURL": "../images/con-3.jpg",
+		"name": "陈凯歌",
+		"alisa": "著名导演",
+		"email": "912114549@qq.com",
+		"type":"C"
+	},
+	{
+		"imgURL": "../images/con-4.jpg",
+		"name": "李易峰",
+		"alisa": "小鲜肉",
+		"email": "912114549@qq.com",
+		"type":"L"
+	},
+	{
+		"imgURL": "../images/con-4.jpg",
+		"name": "吴亦凡",
+		"alisa": "小鲜肉",
+		"email": "912114549@qq.com",
+		"type":"W"
+	},
+	{
+		"imgURL": "../images/6.jpg",
+		"name": "张献猛",
+		"alisa": "h5讲师",
+		"email": "912114549@qq.com",
+		"type":"Z"
+	}
+]

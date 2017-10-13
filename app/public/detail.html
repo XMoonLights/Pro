@@ -1,0 +1,168 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/message.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">详情</h1>
+		</header>
+		<div class="mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<div class="mui-content">
+					<div id="message-card-style" class="mui-card">
+						<div class="mui-card-header mui-card-media">
+							<img src="http://placehold.it/40x30" alt="头像" style="border-radius: 50%;" />
+							<div class="mui-media-body">
+								<h5 id="author"></h5>
+								<p id="time">发表于 </p>
+							</div>
+						</div>
+						<div id="mainText" class="mui-card-content">
+						</div>
+						<div class="mui-card-foot">
+							<ul class="toolBar clearFloat">
+								<li><img src="../images/collectBtn01.png" /><span>收藏</span></li>
+								<li><img src="../images/talkBtn01.png" /><span>评论</span></li>
+							</ul>
+						</div>
+					</div>
+
+					<!--留言板-->
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell mui-media">
+							<a href="javascript:;">
+								<img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
+								<div class="mui-media-body">
+									幸福
+									<p class="mui-ellipsis">能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+								</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media">
+							<a href="javascript:;">
+								<img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
+								<div class="mui-media-body">
+									木屋
+									<p class="mui-ellipsis">想要这样一间小木屋，夏天挫冰吃瓜，冬天围炉取暖.</p>
+								</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media">
+							<a href="javascript:;">
+								<img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
+								<div class="mui-media-body">
+									CBD
+									<p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
+								</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media" id="liText"></li>
+					</ul>
+					<button id="Alert" type="button" class="mui-btn mui-btn-blue mui-btn-block">评论</button>
+				</div>
+			</div>
+		</div>
+
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/putImg.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function() {
+				mui('.mui-scroll-wrapper').scroll({
+					deceleration: 0.0005,
+					bounce: false
+				});
+				
+				/*
+				 * PS：预加载页刷新问题
+				 * */
+				mui.back = function() {
+					var _self = plus.webview.currentWebview();
+					//第一种方式：
+					_self.hide("slide-out-right");
+					setTimeout(function() {
+						_self.reload(); //重新加载
+					}, 300);
+					//第二种方式：
+					//_self.close("slide-out-right");
+				}
+			});
+			window.addEventListener('getId', function(e) {
+				//console.log(e.detail.id);
+				var dataId = e.detail.id;
+				mui.ajax('../data/' + dataId + '.json', {
+					dataType: 'json',
+					type: 'GET',
+					timeout: 10000,
+					success: function(data) {
+						//console.log(JSON.stringify(data));
+						var detailContent = document.getElementById('mainText');
+						detailContent.innerHTML = ''; //每次进入详情页，清空容器内容
+						
+						document.querySelector('#author').innerHTML = data.author;
+						document.querySelector('#time').innerHTML = document.querySelector('#time').innerHTML+data.time;
+						
+						var textImg = document.createElement('img');
+						textImg.src = '../images/' + data.img;
+						textImg.style.width = "100%";
+
+						var textContent = document.createElement('p');
+						textContent.innerHTML = data.info;
+						textContent.classList.add('pCont');
+
+						detailContent.appendChild(textImg);
+						detailContent.appendChild(textContent);
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast("数据获取异常：" + type);
+					}
+				})
+			});
+			
+			//收藏、评论按钮
+			(function articleOperation(){
+				mui(".toolBar").on('tap','li',function(){
+					var operation = this.querySelector('img');
+					var imgSrc = operation.src;
+					if(operation.getAttribute("state") == "true"){
+						operation.setAttribute("state","false");
+						operation.src = imgSrc.replace("02","01");	
+					}else{
+						operation.setAttribute("state","true");
+						operation.src = imgSrc.replace("01","02");
+					}
+				})
+			})();
+			
+			//模态框
+			document.getElementById("Alert").onclick = function() {
+				mui.prompt('', '请输入意见', '消息', ['取消', '提交'], function(e) {
+					var coment = document.getElementById('coment');
+					var val = coment.value;
+					if(e.index == 1) {
+						e.value = val;
+						console.log(e.value);
+						mui.toast(e.value);
+					} else {
+						mui.toast("fail");
+					}
+				}, 'div');
+				var textareas = document.createElement("textarea");
+				textareas.style.marginBottom = 0;
+				textareas.id = "coment";
+				document.querySelector('.mui-popup-input input').style.display = 'none';
+				document.querySelector('.mui-popup-input').appendChild(textareas);
+			}
+		
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/emailPage.css" />
+		<style>
+			ul {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			.goods{
+				padding:8px 0px;
+				background-color: #FFFFFF;
+				border-bottom: 1px solid #e7e7e7;
+			}
+			#goodsCheck {
+				display: flex;
+				align-items: center;
+				padding: 0 8px;
+			}
+			#goodsCheck>input{
+				position: static;
+			}
+			.goodsMessage{
+				position: relative;
+				width: 100%;
+				margin-left: 8px;
+			}
+			
+			.goodsMessage>img {
+				width: 80px;
+				height: 80px;
+				float: left;
+			}
+			.goodsMessage>p{
+				margin: 0;
+				padding: 0;
+				margin-left: 88px;
+			}
+			.goodsMessage>p:nth-of-type(2){
+				color: #F17327;
+			}
+			.goodsMessage>span{
+				position: absolute;
+				right: 12px;
+				bottom: 0px;
+			}
+			.clearShoppingCar{
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				margin: auto;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			.clearShoppingCar>h4{
+				width: 46%;
+				margin: 0;
+				padding: 0;
+				color: #E3E3E3;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="mui-content"></div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function(){
+				loadingGoods();
+			});
+			window.addEventListener('loadingGoods',function(){
+				loadingGoods();
+			});
+			var loadingGoods = function(){
+				var goodsItem = "";
+				var mainContent = document.querySelector('.mui-content');
+				localStorage.removeItem('adminAccount');
+				for(var i = 0; i < localStorage.length; i++) {
+					var goods = JSON.parse(localStorage.getItem(localStorage.key(i)));
+					console.log(localStorage.key(i) + " : " + localStorage.getItem(localStorage.key(i)));
+					goodsItem += "<ul class='goodsList'><li class='goods'><div id='goodsCheck' class='mui-input-row mui-checkbox mui-left'><input name='checkbox1' type='checkbox'><div class='goodsMessage'><img src="+goods.url+" /><p>"+goods.content+"</p><p>"+goods.price+"</p><span>x 1</span></div></div></li></ul>";
+				}
+				if(goodsItem === ""){
+					mainContent.className="mui-content clearShoppingCar";
+					document.querySelector('.mui-content').innerHTML = "<h4>购物车被清空了，来去购买心仪的商品！！！</h4>";
+				}else{
+					mainContent.className="mui-content";
+					document.querySelector('.mui-content').innerHTML = goodsItem;	
+				}
+			}
+		</script>
+	</body>
+
+</html>

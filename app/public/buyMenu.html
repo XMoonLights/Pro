@@ -1,0 +1,277 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style>
+			/*
+			 * rem布局相对于根元素html的font-size，element的font-size=设计图尺寸/根元素的font-size，实现移动端的响应式布局
+			 * */
+			
+			html {
+				font-size: 100px;
+			}
+			
+			.shoppingList {
+				position: fixed;
+				top: 0;
+				width: 100%;
+				min-height: 100%;
+				z-index: 10;
+				background: #ffffff;
+			}
+			
+			.pictureShow {
+				position: absolute;
+				top: 10px;
+				left: 20px;
+				width: 100px;
+				height: 100px;
+				padding: 3px;
+				border-radius: 3px;
+				background: #DDDDDD;
+			}
+			
+			ul.headerList {
+				margin: 10px 0px 10px 1.4rem;
+				padding: 0;
+				list-style: none;
+			}
+			
+			ul.headerList>li {
+				font-size: 0.14rem;
+			}
+			
+			ul.headerList>li:first-of-type {
+				color: #F17327;
+			}
+			
+			ul.headerList>li:last-of-type>span {
+				margin-left: 3px;
+			}
+			
+			.shoppingListContent {
+				position: absolute;
+				top: 120px;
+				left: 0;
+				right: 0;
+				bottom: 55px;
+				overflow-y: auto;
+				padding: 0 20px;
+			}
+			
+			.shoppingListFooter {
+				width: 100%;
+				position: fixed;
+				bottom: 0;
+				display: flex;
+			}
+			
+			.shoppingListFooter>button {
+				flex: 1;
+				margin: 0;
+				border: 0;
+				border-radius: 0;
+			}
+			
+			.shoppingListFooter>button:first-of-type {
+				background: #F0AD4E;
+			}
+			
+			.shoppingListFooter>button:last-of-type {
+				background: #F17327;
+			}
+			
+			#shoppingList {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			
+			#shoppingList>li {
+				border-bottom: 1px solid #F9F9F9;
+				padding: 6px 0;
+			}
+			
+			#shoppingList>li>p {
+				margin: 0 0 10px;
+				padding-left: 0;
+				color: #333333;
+				font-size: .16rem;
+			}
+			
+			#shoppingList>li:last-of-type>p {
+				display: inline-block;
+				padding: 6px 0px;
+				margin: 0;
+			}
+			
+			#shoppingList>li>span {
+				display: inline-block;
+				margin-right: 6px;
+				padding: 4px 8px;
+				min-width: 60px;
+				text-align: center;
+				background-color: #F5F5F5;
+				border-radius: 3px;
+				text-decoration: none;
+				font-size: 0.12rem;
+				color: grey;
+			}
+			
+			.quantity {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				float: right;
+			}
+			
+			.quantity>li {
+				float: left;
+			}
+			
+			.quantity>li>p {
+				display: inline-block;
+				padding: 6px 16px;
+				margin: 0;
+			}
+			
+			.quantity>li>a {
+				display: inline-block;
+				padding: 6px 16px;
+				background-color: #B6B6B6;
+				border-radius: 3px;
+				font-size: 0.3rem;
+				text-decoration: none;
+				color: grey;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="shoppingList">
+			<div class="shoppingListHeader">
+				<div class="pictureShow">
+					<img src="http://placehold.it/400x300" width="100%" />
+				</div>
+				<ul class="headerList">
+					<li id="price"></li>
+					<li id="stock"></li>
+					<li id="tips">请选择 </li>
+				</ul>
+			</div>
+			<div class="shoppingListContent">
+				<ul id="shoppingList">
+					<li>
+						<p>购买数量</p>
+						<ul class="quantity">
+							<li>
+								<a href="#">-</a>
+							</li>
+							<li>
+								<p>1</p>
+							</li>
+							<li>
+								<a href="#">+</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div class="shoppingListFooter">
+				<button id="shoppingCar" type="button" class="mui-btn mui-btn-block">加入购物车</button>
+				<button type="button" class="mui-btn mui-btn-block">立即购买</button>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			var self = null;
+			var cookieData = {};
+			var cookieKey = null;
+			mui.init();
+			mui.plusReady(function() {
+				self = plus.webview.currentWebview();
+				shoppingCar = plus.webview.getWebviewById('email');
+				main = self.opener();
+				var menu = self.menuId.split("_");
+				cookieKey = menu[0];
+				mui.ajax("../data/" + menu[0] + ".json", {
+					dataType: 'json',
+					type: 'get',
+					success: function(data) {
+						var shoppingList = document.querySelector('#shoppingList');
+						for(var item in data) {
+							if(data[item].id == menu[1]) {
+								cookieData = {
+									id: data[item].id,
+									url: data[item].url,
+									price: data[item].price,
+									content: data[item].content
+								};
+								document.querySelector('.pictureShow').getElementsByTagName('img')[0].src = data[item].url;
+								document.querySelector('#price').innerHTML = data[item].price;
+								document.querySelector('#stock').innerHTML = "库存   " + data[item].stock + "件";
+								if(data[item].size != undefined && data[item].size.length > 1) {
+									var tip = document.createElement('span');
+									tip.innerHTML = "尺码";
+									document.querySelector('#tips').appendChild(tip);
+									var sizeList = document.createElement('li');
+									var sizes = "<p>尺码</p>"
+									for(var i = 0; i < data[item].size.length; i++) {
+										sizes += "<span>" + data[item].size[i] + "</span>";
+									}
+									sizeList.innerHTML = sizes;
+									shoppingList.insertBefore(sizeList, shoppingList.childNodes[0]);
+								}
+								if(data[item].color.length > 1) {
+									var tip = document.createElement('span');
+									tip.innerHTML = "颜色";
+									document.querySelector('#tips').appendChild(tip);
+									var colorList = document.createElement('li');
+									var colors = "<p>颜色分类</p>"
+									for(var i = 0; i < data[item].color.length; i++) {
+										colors += "<span>" + data[item].color[i] + "</span>";
+									}
+									colorList.innerHTML = colors;
+									shoppingList.insertBefore(colorList, shoppingList.childNodes[0]);
+								}
+								if(data[item].version.length > 1) {
+									var tip = document.createElement('span');
+									tip.innerHTML = "型号";
+									document.querySelector('#tips').appendChild(tip);
+									var versionList = document.createElement('li');
+									var versions = "<p>型号</p>"
+									for(var i = 0; i < data[item].version.length; i++) {
+										versions += "<span>" + data[item].version[i] + "</span>";
+									}
+									versionList.innerHTML = versions;
+									shoppingList.insertBefore(versionList, shoppingList.childNodes[0]);
+								}
+							}
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						console.log(type);
+					}
+				})
+
+				mui.back = function() {
+					mui.fire(main, "closeMenu");
+				}
+			});
+			document.querySelector('#shoppingCar').addEventListener('tap', function() {
+//				localStorage.clear();
+				localStorage.setItem(cookieKey + cookieData.id, JSON.stringify(cookieData));
+//				for(var i = 0; i < localStorage.length; i++) {
+//					console.log(localStorage.key(i) + " : " + localStorage.getItem(localStorage.key(i)));
+//				}
+				mui.fire(shoppingCar, "loadingGoods");
+				mui.fire(main, "closeMenu");
+			});
+		</script>
+	</body>
+
+</html>

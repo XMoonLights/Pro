@@ -1,0 +1,231 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/icons-extra.css" />
+		<link rel="stylesheet" href="../css/goodsDetail.css" />
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<!--商品图片展示区-->
+			<div id="slider" class="mui-slider">
+				<div class="mui-slider-group mui-slider-loop">
+					<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#">
+							<img src="http://placehold.it/400x300">
+						</a>
+					</div>
+					<!-- 第一张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="http://placehold.it/400x300">
+						</a>
+					</div>
+					<!-- 第二张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="http://placehold.it/400x300">
+						</a>
+					</div>
+					<!-- 第三张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="http://placehold.it/400x300">
+						</a>
+					</div>
+					<!-- 第四张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="http://placehold.it/400x300">
+						</a>
+					</div>
+					<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#">
+							<img src="http://placehold.it/400x300">
+						</a>
+					</div>
+				</div>
+				<div class="mui-slider-indicator">
+					<div class="mui-indicator mui-active"></div>
+					<div class="mui-indicator"></div>
+					<div class="mui-indicator"></div>
+					<div class="mui-indicator"></div>
+				</div>
+			</div>
+
+			<!--商品详情区-->
+			<div class="goods-detail">
+				<div class="goods-detail-header">
+					<p></p>
+					<a href="#">
+						<span class="mui-icon mui-icon-extra mui-icon-extra-share"></span>
+						<span>分享有赏</span>
+					</a>
+				</div>
+				<div class="goods-detail-body">
+				</div>
+			</div>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a id="goodsType" class="mui-navigate-right" style="font-size: 14px;">选择套餐类型，颜色分类</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a id="goodsParameter" class="mui-navigate-right" style="font-size: 14px;">产品参数</a>
+				</li>
+			</ul>
+			<ul class="goods-tool">
+				<li class="goods-tool-item goods-tool-border">
+					客服
+				</li>
+				<li class="goods-tool-item goods-tool-border">
+					店铺
+				</li>
+				<li class="goods-tool-item">
+					收藏
+				</li>
+				<li class="goods-tool-item goods-tool-buy">
+					加入购物车
+				</li>
+				<li class="goods-tool-item goods-tool-buy">
+					立即购买
+				</li>
+			</ul>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			var goodsMenu = null;
+			var buyMenu = null;
+			var menuState = false;
+			var buyMenuState = false;
+			var self = null;
+			var maskId = null;
+
+			mui.init();
+			mui.plusReady(function() {
+				self = plus.webview.currentWebview();
+
+				goodsMenu = mui.preload({
+					id: 'goodsMenu',
+					url: 'goodsMenu.html',
+					styles: {
+						top: '100%',
+						width: '100%'
+					},
+					extras: {
+						menuId: self.dataId + "_" + self.goodsId
+					}
+				});
+				
+				buyMenu = mui.preload({
+					id: 'buyMenu',
+					url: 'buyMenu.html',
+					styles:{
+						top:'100%',
+						width:'100%'
+					},
+					extras: {
+						menuId: self.dataId + "_" + self.goodsId
+					}
+				});
+
+				mui.ajax("../data/" + self.dataId + ".json", {
+					dataType: 'json',
+					type: 'get',
+					success: function(data) {
+						for(var item in data) {
+							if(data[item].id === self.goodsId) {
+								var goodsImg = document.querySelector('#slider').getElementsByTagName('img');
+								for(var i = 0; i < goodsImg.length; i++) {
+									goodsImg[i].src = data[item].url;
+								}
+								var content = "<p>" + data[item].price + "</p><p>价格 <span>699</span></p><ul class='logistics'><li>快递：0.00</li><li>月销" + data[item].amount + "笔</li><li>浙江宁波</li></ul>"
+								document.querySelector('.goods-detail-header').getElementsByTagName('p')[0].innerHTML = data[item].content;
+								document.querySelector('.goods-detail-body').innerHTML = content;
+
+								break;
+							}
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						console.log(type);
+					}
+				})
+
+				self.addEventListener('maskClick', function() {
+//					console.log(maskId);
+					if(maskId === "buyMenu"){
+						closeMenu(buyMenu);
+					}else{
+						closeMenu(goodsMenu);
+					}
+				});
+			})
+
+			/*
+			 * 弹出商品购物栏
+			 * */
+			mui('.mui-table-view').on('tap', 'a', function() {
+				if(this.id === "goodsParameter") {
+					openMenu(goodsMenu);
+				}else{
+					openMenu(buyMenu);
+				}
+			});
+
+			var openMenu = function(menu) {
+				maskId = menu.id;//用来区分buyMenu和goodsMenu两个的公共遮罩区
+				if(!menuState) {
+					setTimeout(function() {
+						plus.webview.getWebviewById(menu.id).setStyle({
+							top: '20%',
+							bottom: 0,
+							transition: {
+								duration: 300
+							}
+						});
+						self.setStyle({
+							mask: 'rgba(0,0,0,0.6)'
+						});
+					}, 20);
+					menu.show();
+					menuState = true;
+				}
+			}
+
+			window.addEventListener('closeMenu', function() {
+				if(maskId === "buyMenu"){
+						closeMenu(buyMenu);
+					}else{
+						closeMenu(goodsMenu);
+					}
+			});
+
+			var closeMenu = function(menu) {
+				if(menuState) {
+					self.setStyle({
+						mask: 'none'
+					});
+					plus.webview.getWebviewById(menu.id).setStyle({
+						top: '100%',
+						bottom: '-100%',
+						transition: {
+							duration: 300
+						}
+					});
+					setTimeout(function() {
+						menu.hide();
+					}, 400);
+					menuState = false;
+				}
+			}
+		</script>
+	</body>
+
+</html>

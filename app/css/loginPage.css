@@ -1,0 +1,83 @@
+.mui-content.contentCenter {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+	/*为设置blur模糊效果的容器的父容器添加相同的背景图片，能有效解决白边问题*/
+	background: url(../images/bk.jpg) no-repeat center;
+	background-size: cover;
+}
+
+.backgroundFilter {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: url(../images/bk.jpg) no-repeat center;
+	background-size: cover;
+	-webkit-filter: blur(90px);
+	filter: blur(90px);
+}
+
+.loginList {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	width: 80%;
+	z-index: 9;
+}
+
+.loginList .input {
+	border: 1px solid #FFFFFF;
+	border-radius: 30px;
+	margin-bottom: 20px;
+}
+
+.loginList .input:nth-of-type(3) {
+	border: 0px;
+}
+.loginList .input:last-child{
+	border: 0px;
+	text-align: center;
+	color: #CCCCCC;
+}
+.loginList .input:last-child>a{
+	text-decoration: none;
+	color: #CCCCCC;
+}
+
+.input input {
+	width: 100%;
+	margin-bottom: 0;
+	border: 0;
+	background: 0 0;
+	text-align: center;
+}
+
+.input input:-ms-input-placeholder {
+	color: #FFFFFF;
+}
+
+.input input::-moz-placeholder {
+	color: #FFFFFF;
+}
+
+.input input::-webkit-input-placeholder {
+	color: #FFFFFF;
+}
+
+.input button.mui-btn-block {
+	margin: 0px;
+	border-radius: 30px;
+	padding: 0px;
+	height: 42px;
+	background: #17d6a8;
+	color: #FFFFFF;
+	border: 0px;
+}

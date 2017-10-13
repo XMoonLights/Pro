@@ -1,0 +1,104 @@
+.goods-tool {
+	position: fixed;
+	bottom: 0;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	height: 50px;
+	list-style: none;
+	display: flex;
+	border-top: 0.1px solid grey;
+}
+
+.goods-tool-item {
+	flex: 1;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 14px;
+}
+
+.goods-tool-item.goods-tool-border {
+	border-right: 0.1px dashed grey;
+}
+
+.goods-tool-item.goods-tool-buy {
+	flex: 2;
+	background: #F0AD4E;
+}
+
+.goods-tool-item.goods-tool-buy:last-of-type {
+	background: #f17327;
+}
+
+.goods-detail {
+	background: #F9F9F9;
+	padding: 10px 14px 0px;
+}
+
+.goods-detail p {
+	margin: 0px;
+}
+
+.goods-detail-header {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.goods-detail-header>p {
+	flex: 6;
+	color: #000000;
+	font-size: 16px;
+}
+
+.goods-detail-header>a {
+	flex: 1;
+	text-decoration: none;
+	font-size: 12px;
+	color: grey;
+	text-align: center;
+}
+
+.goods-detail-header>a>span:first-of-type {
+	display: block;
+	color: #ef6f22;
+}
+
+.goods-detail-body>p:first-of-type {
+	font-size: 16px;
+	color: #ef6f22;
+}
+
+.goods-detail-body>p:last-of-type {
+	font-size: 12px;
+}
+
+.goods-detail-body>p:last-of-type>span {
+	padding: 0 3px;
+	text-decoration: line-through;
+}
+
+.goods-detail-body .logistics {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	display: flex;
+	text-align: center;
+	margin-top: 10px;
+}
+
+.goods-detail-body .logistics>li {
+	flex: 1;
+	font-size: 12px;
+	color: grey;
+}
+
+.goods-detail-body .logistics>li:first-of-type {
+	text-align: left;
+}
+
+.goods-detail-body .logistics>li:last-of-type {
+	text-align: right;
+}

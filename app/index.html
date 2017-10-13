@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/icons-extra.css" />
+		<link rel="stylesheet" href="css/index.css" />
+		<!--App自定义的css-->
+
+	</head>
+
+	<body>
+
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-action-menu mui-icon-bars mui-pull-left"></a>
+			<h1 id="title" class="mui-title">标题</h1>
+		</header>
+		<nav id="views" class="mui-bar mui-bar-tab">
+			<a id="home" class="mui-tab-item mui-active">
+				<span class="mui-icon mui-icon-home"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a id="shopping" class="mui-tab-item">
+				<span class="mui-icon mui-icon-extra mui-icon-extra-cart"></span>
+				<span class="mui-tab-label">商城</span>
+			</a>
+			<a id="email" class="mui-tab-item">
+				<span class="mui-icon mui-icon-email"></span>
+				<span class="mui-tab-label">购物车</span>
+			</a>
+			<a id="gear" class="mui-tab-item">
+				<span class="mui-icon mui-icon-gear"></span>
+				<span class="mui-tab-label">设置</span>
+			</a>
+		</nav>
+	</body>
+	<script src="js/mui.js"></script>
+	<script type="text/javascript">
+		mui.init({
+			swipeBack: true //启用右滑关闭功能
+		});
+		mui.plusReady(function(){
+			plus.navigator.setStatusBarStyle("dark");
+		})
+
+		//底部选项卡切换跳转
+		(function jumpPage() {
+			//跳转页面
+			var subpages = [{
+					url: "public/home.html",
+					id: "home"
+				},
+				{
+					url: "public/shopping.html",
+					id: "shopping"
+				},
+				{
+					url: "public/email.html",
+					id: "email"
+				},
+				{
+					url: "public/gear.html",
+					id: "gear"
+				}
+			];
+			var subpage_style = {
+				top: '64px',
+				bottom: '51px'
+			};
+			var aniShow = {}; //动画显示
+			var temp = {}; //判断是否首次显示
+			//首次启动切滑效果
+			mui.plusReady(function() {
+				//只允许竖屏显示
+				plus.screen.lockOrientation("portrait-primary");
+				var self = plus.webview.currentWebview();
+				for(var i = 0; i < 4; i++) {
+					var sub = plus.webview.create(subpages[i].url, subpages[i].id, subpage_style);
+					//默认显示第一个子webview，其他的都隐藏
+					if(i > 0) {
+						sub.hide();
+					} else {
+						temp[subpages[i].id] = "true";
+						//合并对象temp到aniShow中
+						mui.extend(aniShow, temp);
+					}
+					self.append(sub);
+				}
+			});
+			//当前激活选项
+			var activeTab = subpages[0].id;
+			//选项卡点击事件
+			mui('.mui-bar-tab').on('tap', 'a', function(e) {
+
+				var targetTab = this.getAttribute('id');
+				if(targetTab == activeTab) {
+					//如果跳转Tab是当前Tab，则直接返回
+					return;
+				}
+				//更换标题
+				var title = document.getElementById("title");
+				title.innerHTML = this.querySelector('.mui-tab-label').innerHTML;
+				//显示目标选项卡
+				//若为iOS平台或非首次显示，则直接显示
+				if(mui.os.ios || aniShow[targetTab]) {
+					plus.webview.show(targetTab);
+				} else {
+					//否则，使用fade-in动画，且保存变量
+					temp[targetTab] = "true";
+					mui.extend(aniShow, temp);
+					plus.webview.show(targetTab, "fade-in", 300);
+				}
+				//隐藏当前,并立即执行刷新;
+				plus.webview.hide(activeTab);
+				plus.webview.getWebviewById(activeTab).reload();
+				//更改当前活跃的选项卡
+				activeTab = targetTab;
+			});
+		})()
+
+		//側滑--webview模式
+		var menu;//预加载侧滑菜单
+		var menuState = false; //侧滑菜单动画状态
+		var self;
+		mui.plusReady(function() {
+			self = plus.webview.currentWebview();
+			menu = mui.preload({
+				id: "menu",
+				url: "public/menu.html",
+				styles: {
+					top: '0px',
+					width: '70%',
+					zindex: -1
+				}
+			});
+			//点击遮罩层关闭侧滑菜单--maskClick为MUI自带事件
+			self.addEventListener('maskClick',closeMenu);
+		});
+		mui("header").on('tap', '.mui-icon-bars', openMenu);
+		//弹出侧滑菜单
+		function openMenu() {
+			if(!menuState) {
+				self.setStyle({
+					left: '70%',
+					mask: 'rgba(0,0,0,0.01)',
+					transition: {
+						duration: 300
+					}
+				});
+				menu.show();
+				menuState = true;
+			}
+		}
+		//关闭侧滑菜单
+		function closeMenu() {
+			if(menuState) {
+				self.setStyle({
+					left: '0',
+					mask: 'none',
+					transition: {
+						duration: 300
+					}
+				});
+				//等main彻底归位后隐藏,注意：定时器设置时间要不小于侧滑动画过渡时间，不然会出现闪屏
+				setTimeout(function() {
+					menu.hide();
+				}, 400);
+				menuState = false;
+			}
+		}
+		window.addEventListener('close-menu', closeMenu);
+		window.addEventListener('goThisPage',function(e){
+			closeMenu();
+			var menuListId = e.detail.id;
+			var targetTab =  document.querySelector('#'+menuListId);
+			var activeTab = document.querySelector('.mui-active');
+			if(targetTab == activeTab){
+				return;
+			}else{
+				mui.trigger(targetTab,'tap');
+				/*
+				 * classList为DOM属性--添加、移除元素样式类
+				 * */
+				activeTab.classList.remove("mui-active");
+				targetTab.classList.add("mui-active");
+			}
+		})
+		var first; //初始化返回键点击状态
+		//自定义手机的返回键
+		mui.back = function() {
+			if(menuState) {
+				closeMenu();
+			} else if(!first) {
+				first = new Date().getTime();
+				mui.toast("再次点击退出程序");
+				//如果不是连续点击，则重新初始化返回键点击状态
+				setTimeout(function() {
+					first = null;
+				}, 1000);
+			} else if(new Date().getTime() - first < 1000) {
+				plus.runtime.quit();
+			}
+		}
+	</script>
+
+</html>
