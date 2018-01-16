@@ -1,0 +1,65 @@
+<!--pages/mine_order/mine_order.wxml-->
+<view class='container'>
+  <!--顶部导航栏-->
+  <view class="swiper-tab">
+    <view class="font-size-1 tab-item {{currentTab==0 ? 'font-color-2 on' : ''}}" data-item="all" data-current="0" bindtap="switchNav">全部
+    </view>
+    <view class="font-size-1 tab-item {{currentTab==1 ? 'font-color-2 on' : ''}}" data-item="pay" data-current="1" bindtap="switchNav">待付款
+    </view>
+    <view class="font-size-1 tab-item {{currentTab==2 ? 'font-color-2 on' : ''}}" data-item="transport" data-current="2" bindtap="switchNav">待收货
+    </view>
+    <view class="font-size-1 tab-item {{currentTab==3 ? 'font-color-2 on' : ''}}" data-item="evaluate" data-current="3" bindtap="switchNav">待评论
+    </view>
+    <view class="font-size-1 tab-item {{currentTab==4 ? 'font-color-2 on' : ''}}" data-item="refund" data-current="4" bindtap="switchNav">退款
+    </view>
+  </view>
+
+  <view class='order-list'>
+    <block wx:for="{{order}}" wx:key="id">
+      <view class='order-li'>
+        <view class='header'>
+          <text class='font-color-1'>订单号：{{item.sn2}}</text>
+          <text class='font-color-2'>{{item.status_text}}</text>
+        </view>
+        <view class='content' data-state='{{item.status}}' data-orderNum='{{item.sn2}}' bindtap='toOrderDetails'>
+          <view class='goods-li clearfix'>
+            <image src='{{item.item.img_url}}'></image>
+            <view class='details'>
+              <text>{{item.item.subtitle}}</text>
+              <view class='sale'>
+                <text class='font-color-2'>￥</text>
+                <text class='font-color-2 font-size-1'>{{item.item.price_single}}</text>
+                <text class='font-color-1'>￥{{item.item.price_original}}</text>
+                <text class='font-color-1'>×{{item.item_num}}</text>
+              </view>
+            </view>
+          </view>
+          <view class='order-li-count'>
+            <text>共{{item.item_num}}件商品</text>
+            <text>总金额：￥{{item.count_money}}</text>
+            <text wx:if='{{item.status==0&&item.freight==null}}'>(免运费)</text>
+            <text wx:elif='{{item.status==0&&item.freight!=null}}'>(含运费￥ {{item.freight}})</text>
+            <text wx:elif='{{item.status!=0&&item.record.freight==null}}'>(免运费)</text>
+            <text wx:else>(含运费￥ {{item.record.freight}})</text>
+          </view>
+        </view>
+        <view class='footer' wx:if='{{item.status==0}}'>
+          <button class='btn-size-1 font-color-1 btn-cancel' type='button' data-index='{{index}}' data-order='{{item.sn2}}' bindtap='showModal'>取消订单</button>
+          <button class='btn-size-1 btn-color-1 btn-pay' type='button' data-state='{{item.status}}' data-orderNum='{{item.sn2}}' bindtap='toOrderDetails'>去支付</button>
+        </view>
+        <view class='footer' wx:if='{{item.status==1}}'>
+          <text class='font-color-1'>{{item.order_status.remark}}</text>
+          <!-- <button class='btn-size-1 btn-color-3' type='button' bindtap='toCheckOrder'>取消订单</button> -->
+        </view>
+        <view class='footer' wx:if='{{item.status==2}}'>
+          <!-- <button class='btn-size-1 font-color-1 btn-cancel' type='button' bindtap='showModal'>取消订单</button> -->
+          <button class='btn-size-1 btn-color-1 btn-pay' type='button' data-index='{{index}}' bindtap='toCheckOrder'>去评价</button>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <modal wx:if="{{hidden}}" confirm-text="是" cancel-text="否" bindcancel="cancel" bindconfirm="confirm">
+    是否取消订单
+  </modal>
+</view>

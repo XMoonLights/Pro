@@ -1,0 +1,6 @@
+{
+  "usingComponents":{
+    "banner":"../../components/banner/banner",
+    "footerBar":"../../components/navbar/navbar"
+  }
+}

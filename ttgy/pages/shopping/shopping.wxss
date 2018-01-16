@@ -1,0 +1,108 @@
+/* pages/shopping/shopping.wxss */
+.goods-list-header{
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 30rpx;
+  background-color: #ffffff;
+  position: relative;
+}
+.goods-list-header .icon{
+  border: 1px solid #e72142;
+  padding: 6rpx;
+  margin-right: 20rpx;
+  border-radius: 5rpx;
+}
+
+.goods-list-item{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20rpx 30rpx;
+  height: 200rpx;
+  border-top: 1px solid #d9d9d9;
+  background-color: #ffffff;
+}
+.goods-list-item>icon{
+  flex: 1;
+}
+.goods-list-item>image{
+  flex: 4;
+  height: 100%;
+  margin: 0 20rpx;
+}
+.goods-details{
+  flex: 7;
+  height: 100%;
+}
+.goods-details .title{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:2;
+  overflow: hidden;
+}
+.goods-details .price{
+  margin-top: 30rpx;
+}
+.goods-details .price>text:last-of-type{
+  margin-left: 20rpx;
+  text-decoration: line-through;
+}
+.goods-details .quantity{
+  display: flex;
+  align-items: center;
+  margin-top: 20rpx;
+  position: relative;
+}
+.goods-details .quantity>image{
+  width: 50rpx;
+  height: 50rpx;
+}
+.goods-details .quantity>text{
+  margin: 0 12rpx;
+}
+.goods-operate{
+  position: absolute;
+  right: 0;
+}
+.goods-operate>text{
+  margin-left: 10rpx;
+}
+
+
+/* 底部菜单 */
+.footer-bar{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 94rpx;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+}
+.footer-bar .all-select{
+  flex: 3;
+  display: flex;
+  align-items: center;
+}
+.footer-bar .all-select>icon{
+  margin: 0 10rpx 0 30rpx;
+}
+.footer-bar .count{
+  flex: 9;
+  display: flex;
+  align-items: center;
+}
+.footer-bar .count>text:nth-of-type(2){
+  width: 150rpx;
+  margin-right: 20rpx;
+}
+.footer-bar .balance{
+  position: absolute;
+  right: 0;
+  height: 94rpx;
+  line-height: 94rpx;
+  text-align: center;
+  padding: 0 30rpx;
+}
+

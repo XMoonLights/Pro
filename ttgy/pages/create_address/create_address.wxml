@@ -1,0 +1,61 @@
+<!--pages/create_address/create_address.wxml-->
+<view class='container'>
+  <view class='address-create'>
+    <view class='username'>
+      <text class='font-color-1'>收货人：</text>
+      <input type='text' bindinput='getUserName' value='{{username}}'></input>
+    </view>
+    <view class='phone'>
+      <text class='font-color-1'>手机号码：</text>
+      <input type='text' bindinput='getPhone' value='{{phone}}'></input>
+    </view>
+    <view class='address btn-next' bindtap='showModal'>
+      <text>所在区域：</text>
+      <input type='text' disabled='true' placeholder='' value='{{address}}'></input>
+      <!-- <!-- <picker class='picker' mode='region' bindchange='regionChange' value='{{address}}' custom-item='{{customItem}}'>
+      <text class='font-color-1'>所在区域：</text>
+        <view class='picker-region'>
+        {{address[0]}} {{address[1]}} {{address[2]}}
+        </view>
+      </picker>  -->
+    </view>
+    <view class='address-details'>
+      <text class='font-color-1'>详细地址：</text>
+      <textarea placeholder='街道、楼牌号等' maxlength='50' auto-height='true' bindinput='getAddressDetails' value='{{address_details}}'></textarea>
+    </view>
+    <view class='check'>
+      <view class='address-operate clearfix'>
+        <text>默认地址</text>
+        <icon type='success' size='30' color='{{address_state==1?"#e72142":"grey"}}' bindtap='setDefaultAddress'></icon>
+      </view>
+      <text class='font-color-1 font-size-2'>注：每次下单时默认使用此地址</text>
+    </view>
+  </view>
+  <button data-address='{{address}}' class='btn-color-1 address-save' bindtap='saveAddress'>保存</button>
+
+  <!-- 地区选择器 -->
+  <view class='bg-4 modal-address' wx:if='{{modal}}'>
+    <view class='bg-2 address-picker'>
+      <view class='address-picker-header'>
+        <text class='font-size-1'>所在地区</text>
+        <icon type='clear' size='24' bindtap='hiddenModal'></icon>
+      </view>
+      <view class='address-picker-body'>
+        <picker-view indicator-style="height: 50px;" style="width: 100%; height: 180px;text-align:center;" value="{{value}}" bindchange="getPCA">
+          <picker-view-column>
+            <view wx:for="{{prolist}}" wx:key='id' style="line-height: 50px">{{item.name}}</view>
+          </picker-view-column>
+          <picker-view-column>
+            <view wx:for="{{citlist}}" wx:key='id' style="line-height: 50px">{{item.name}}</view>
+          </picker-view-column>
+          <picker-view-column>
+            <view wx:for="{{arelist}}" wx:key='id' style="line-height: 50px">{{item.name}}</view>
+          </picker-view-column>
+        </picker-view>
+      </view>
+      <view class='btn-color-1 address-picker-footer' bindtap='selectAddress'>
+        <text>确定</text>
+      </view>
+    </view>
+  </view>
+</view>

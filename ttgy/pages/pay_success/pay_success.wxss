@@ -1,0 +1,30 @@
+@import "../inventory/inventory.wxss";
+/* pages/pay_success/pay_success.wxss */
+.pay-state{
+  position: relative;
+  padding: 30rpx;
+}
+.pay-state:before{
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 30rpx;
+  background-color: #f0f0f0;
+}
+.artice-header{
+  display: flex;
+  align-items: center;
+  margin: 30rpx 0;
+}
+.artice-header>icon{
+  margin-right: 20rpx;
+}
+.artice-footer{
+  text-align: center;
+}
+.artice-footer>text{
+  margin: 50rpx 30rpx;
+  border: 1rpx solid #e72142;
+}

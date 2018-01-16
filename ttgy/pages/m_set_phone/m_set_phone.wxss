@@ -1,0 +1,43 @@
+/* pages/m_set_phone/m_set_phone.wxss */
+.m-set{
+  padding: 20rpx 30rpx;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  border-bottom: 1rpx solid #d9d9d9;
+}
+.m-set:first-of-type{
+  margin-top: 30rpx;
+}
+.m-set:last-of-type{
+  margin-bottom: 30rpx;
+}
+.m-set>text:first-of-type{
+  width: 120rpx;
+}
+.m-set>input{
+  flex: 1;
+  margin-left: 30rpx;
+  padding: 10rpx 0 10rpx 20rpx;
+  border-left: 1rpx solid #d9d9d9;
+}
+.m-set .get-code{
+  padding: 0 20rpx;
+}
+.m-set .get-code .interval{
+  display: inline-block;
+  width: 30rpx;
+}
+.prompt{
+  color: red;
+  padding: 30rpx;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.prompt>text{
+  margin-left: 10rpx;
+}
+.btn-set{
+  margin: 0 30rpx;
+}

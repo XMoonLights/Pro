@@ -1,0 +1,31 @@
+/* pages/inventory/inventory.wxss */
+.goods-li{
+  background-color: #ffffff;
+  padding: 30rpx;
+  border-bottom: 1px solid #d9d9d9;
+}
+.goods-li:last-of-type{
+  border-bottom: 0;
+}
+.goods-li>image{
+  width: 160rpx;
+  height: 160rpx;
+  margin: 0 20rpx;
+  float: left;
+}
+.details>text:first-of-type{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:3,;
+  overflow: hidden;
+}
+.details .sale{
+  margin-top: 20rpx;
+}
+.details .sale>text:nth-of-type(3){
+  margin-left: 30rpx;
+  text-decoration: line-through;
+}
+.details .sale>text:last-child{
+  float: right;
+}

@@ -1,0 +1,112 @@
+<!--pages/goods_details/goods_details.wxml-->
+<view class='container'>
+  <view class='details-header'>
+    <banner img='{{images}}'></banner>
+    <view class='content'>
+      <view class='title'>
+        <text>{{goods.subtitle}}</text>
+        <text class='font-color-2'>{{goods.title}}</text>
+      </view>
+      <view class='shore'>
+        <view class='shore-img'>
+          <image src='../../public/images/shore.png'></image>
+        </view>
+        <text>分享</text>
+      </view>
+      <view class='price' wx:if='{{goods.from_sale_text=="未下架"}}'>
+        <text class='font-color-2'>￥</text>
+        <text class='font-color-2 font-size-1'>{{goods.price_single}}</text>
+        <!-- <text class='font-color-1'>（下单后7天内，每天按时配送1份）</text> -->
+        <text class='font-color-1 font-size-2 price-original'>市场价:{{goods.price_original}}</text>
+      </view>
+      <view class='quantity' wx:if='{{goods.from_sale_text=="未下架"}}'>
+        <text class='font-color-1 font-size-2'>累计销量：{{goods.sale_num}}件</text>
+      </view>
+      <view wx:if='{{goods.from_sale_text=="已下架"}}'>
+        <text class='font-color-1 font-size-1'>产品已下架</text>
+      </view>
+    </view>
+    <view class='goods-type' wx:if="{{goods.package.length>0}}">
+      <block wx:for='{{goods.package}}' wx:key='id'>
+        <view class='goods-type-li {{goods.id==item.item_id?"on":""}}' data-item='{{item.item_id}}' bindtap='choosePackage'>
+          <text>{{item.title}}</text>
+          <image src='../../public/images/check.png' wx:if='{{goods.id==item.item_id}}'></image>
+        </view>
+      </block>
+    </view>
+    <view class='choose'>
+      <text class='font-color-1'>已选</text>
+      <text>{{goods.title}}，1个</text>
+      <image src='../../public/images/more.png'></image>
+    </view>
+  </view>
+  <!-- <view class='recommend'>
+    <text>也许以下套餐更适合你</text>
+    <view class='recommend-goods'>
+      <block wx:for='{{recommend}}' wx:key='id'>
+        <view class='recommend-goods-li'>
+          <image src='{{item.image}}'></image>
+          <text class='font-size-2'>{{item.title}}</text>
+          <text class='font-color-2'>￥</text>
+          <text class='font-color-2 font-size-1'>{{item.price}}</text>
+        </view>
+      </block>
+    </view>
+  </view> -->
+  <view class='details-body'>
+    <view class='nav'>
+      <view class='nav-li'>
+        <text class="{{currentTab==0 ? 'font-color-2 on' : ''}}" data-current='0' bindtap="switchNav">商品详情</text>
+      </view>
+      <view class='nav-li'>
+        <text class="{{currentTab==1 ? 'font-color-2 on' : ''}}" data-current='1' bindtap="switchNav">商品评价</text>
+      </view>
+    </view>
+    <view class='nav-li-details' wx:if='{{currentTab==0}}'>
+      <block wx:for='{{goods.contentImg}}' wx:key='id'>
+        <image src='{{item.img_url}}'></image>
+      </block>
+    </view>
+    <view class='nav-li-evaluate' wx:if='{{currentTab==1}}'>
+      <block wx:for='{{evaluate}}' wx:key='id' wx:for-item='items'>
+        <view class='evaluate-li'>
+          <!-- <image src='{{items.user_info.img_url}}'></image> -->
+          <image src='../../public/images/adminor.png'></image>
+          <view class='evaluate-content'>
+            <text class='font-size'>{{items.user_info.nickname}}</text>
+            <view class='evaluate-score'>
+              <block wx:for="{{[1,2,3,4,5]}}" wx:key='*this'>
+                <view class='goods-score {{(index<items.stars_item)?"on":""}}'>
+                </view>
+              </block>
+            </view>
+            <text class='font-color-1 evaluate-time'>{{items.create_date}}</text>
+            <text class='font-color-1'>{{items.content}}</text>
+            <view class='evaluate-upper' wx:if="{{items.images.length>0}}">
+              <block wx:for='{{items.images}}' wx:key="index">
+                <image src='{{item.img_url}}'></image>
+              </block>
+            </view>
+            <view class='evaluate-reply font-color-1' wx:if="{{items.reply.length>0}}">
+              商家回复：
+              <text>{{items.reply}}</text>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class='details-footer'>
+    <view class='collect' data-id='{{goods.id}}' data-collect='{{goods.collection}}' bindtap='collect'>
+      <image src="{{collect?'../../public/images/collect_on.png':'../../public/images/collect_default.png'}}"></image>
+      <text>收藏</text>
+    </view>
+    <view class='car' bindtap='toShopping'>
+      <image src='../../public/images/shopping_default.png'></image>
+      <text>购物车</text>
+    </view>
+    <view class='btn-color-1 buy' data-id='{{goods.id}}' bindtap='joinCar'>
+      <text>加入购物车</text>
+    </view>
+  </view>
+</view>

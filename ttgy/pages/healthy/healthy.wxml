@@ -1,0 +1,57 @@
+<!--pages/healthy/healthy.wxml-->
+<view class='container'>
+  <view class='healthy-header'>
+    <banner img='{{images}}'></banner>
+    <view class='customer-tips'>
+      <block wx:for="{{tips}}" wx:key="id">
+        <view class='customer-tips-li' data-name="{{item.name}}" bindtap='toTips'>
+          <image src='{{item.imageUrl}}'></image>
+          <text>{{item.name}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class="swiper-tab">
+    <view class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="switchNav">最佳答案</view>
+    <view class="tab-item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="switchNav">最新问题</view>
+  </view>
+  <view class='swiper-item' wx:if="{{currentTab == 0}}">
+    <block wx:for="{{answer}}" wx:key="id">
+      <view class='answer-li'>
+        <view class='li-header'>
+          <image src="{{item.userImg}}"></image>
+          <text>{{item.userName}} 的回答</text>
+          <view class='li-praise'>
+            <image src='../../public/images/praise_default.png'></image>
+            <text>{{item.praise}}</text>
+          </view>
+        </view>
+        <view class='li-content'>
+          <text>{{item.title}}</text>
+          <text class='font-color-1'>{{item.content}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view class='swiper-item' wx:if="{{currentTab == 1}}">
+    <block wx:for="{{question}}" wx:key="id">
+      <view class='question-li'>
+        <view class='li-header'>
+          <image src="{{item.userImg}}"></image>
+          <text>{{item.userName}} 的回答</text>
+          <view class='li-reply'>
+            <image src='../../public/images/reply_message.png'></image>
+            <text class='font-color-2'>{{item.answer}}</text>
+          </view>
+        </view>
+        <view class='li-content'>
+          <text>{{item.title}}</text>
+          <text class='font-color-1'>{{item.content}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view class='tool-bar'>
+  <text>我要提问</text>
+  </view>
+</view>

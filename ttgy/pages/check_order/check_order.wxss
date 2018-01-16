@@ -1,0 +1,177 @@
+/* pages/check_order/check_order.wxss */
+.order-header{
+  background-color: #ffffff;
+}
+.icon{
+  flex: 1;
+}
+.details{
+  flex: 11;
+  margin-right: 80rpx;
+}
+.icon image{
+  width: 40rpx;
+  height: 40rpx;
+  margin: 0 20rpx;
+}
+.order-message,.order-time{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20rpx 0;
+}
+.order-message .icon image{
+  width: 30rpx;
+  margin: 0 25rpx;
+}
+.details_users{
+  margin-bottom: 10rpx;
+}
+.details_users>text:nth-of-type(2){
+  margin: 0 15rpx 0 20rpx;
+  font-weight: 600;
+}
+.details_users>text:last-of-type{
+  border-radius: 8rpx;
+  padding: 0 10rpx;
+}
+
+.order-time{
+  border-top: 1px solid #d9d9d9;
+  border-bottom: 1px solid #d9d9d9;
+}
+.order-time text{
+  font-weight: 300;
+}
+.order-time text:last-of-type{
+  margin-left: 60rpx;
+}
+
+
+
+/* order-goods */
+.order-goods{
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  margin: 20rpx 0;
+}
+.order-goods>text:last-of-type{
+  position: absolute;
+  right: 80rpx;
+}
+.order-goods-img{
+  padding: 25rpx;
+}
+.goods-img-box{
+  display: inline-block;
+  position: relative;
+  margin-right: 20rpx;
+}
+.goods-img-box>image{
+  width: 150rpx;
+  height: 150rpx;
+}
+.goods-img-box>text{
+  position: absolute;
+  right: 10rpx;
+  bottom: 10rpx;
+}
+
+/* order-remarks */
+.order-remarks{
+  height: 96rpx;
+  padding: 0 20rpx;
+  background-color: #ffffff;
+}
+.order-remarks>input{
+  height: 96rpx;
+  line-height: 96rpx;
+}
+
+/* order-count */
+.order-count{
+  padding: 0 20rpx;
+  background-color: #ffffff;
+  margin: 20rpx 0;
+}
+.order-count .total,.order-count .carriage{
+  padding: 20rpx 0;
+}
+.order-count .total>text:last-of-type,.order-count .carriage>text:last-of-type{
+  float: right;
+}
+
+/* 底部菜单 */
+.footer-bar{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 94rpx;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+}
+.footer-bar .count{
+  flex: 9;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 220rpx;
+}
+.footer-bar .balance{
+  position: absolute;
+  right: 0;
+  height: 94rpx;
+  line-height: 94rpx;
+  text-align: center;
+  padding: 0 30rpx;
+}
+
+/* modal-time */
+.modal-time{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+}
+.time-picker{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.time-picker-header{
+  text-align: center;
+  padding: 30rpx 0;
+  border-bottom: 2rpx solid #d9d9d9;
+}
+.time-picker-body{
+  padding: 30rpx 20rpx;
+}
+.time-picker-list{
+  margin: 20rpx auto;
+  border-radius: 6rpx;
+}
+.time-picker-li{
+  padding: 30rpx;
+}
+.time-picker-li.on{
+  background-color: #f0f0f0;
+}
+.time-picker-li:nth-of-type(2){
+  border-top: 1rpx solid #d9d9d9;
+  border-bottom: 1rpx solid #d9d9d9;
+}
+.time-picker-li>image{
+  width: 40rpx;
+  height: 40rpx;
+  float: right;
+}
+.time-picker-footer{
+  padding: 30rpx;
+  text-align: center;
+}

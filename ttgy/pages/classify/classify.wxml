@@ -1,0 +1,42 @@
+<import src="../../components/footer/footer" />
+<!--pages/classify/classify.wxml-->
+<view class='container'>
+  <view class='top-bar'>
+    <view class='top-bar-search' bindtap='toSearch'>
+      <image src='../../public/images/search.png'></image>
+      <text>请输入商品名称</text>
+    </view>
+  </view>
+  <view class='goods-classify'>
+    <view class='goods-list'>
+      <block wx:for="{{tips}}" wx:key="id">
+        <view class="goods-item {{currentTab==index ? 'font-color-2 on' : ''}}" data-current='{{index}}' data-tips='{{item.id}}' bindtap="switchNav">{{item.title}}</view>
+      </block>
+    </view>
+    
+      <view class='goods-content'>
+      <scroll-view scroll-y="true" style='height:100%;' scroll-top='{{scrollTop}}' data-tips='{{tips_id}}' bindscrolltolower="loadMore">
+        <block wx:for='{{goods}}' wx:key="id">
+          <view class='goods-content-item clearfix' data-goodsId='{{item.id}}' bindtap='toDetails'>
+            <image src='{{item.img_url}}'></image>
+            <view class='goods-details'>
+              <view class='subtitle'>{{item.subtitle}}</view>
+              <view class='font-color-1 title'>{{item.title}}</view>
+              <view class='price font-color-1'>
+                <text class='font-color-2'>￥</text>
+                <text class='font-size-1 font-color-2'>{{item.price_single}}</text>/{{item.units}}
+              </view>
+              <image src='../../public/images/car.png' data-id='{{item.id}}' catchtap='joinCar'></image>
+            </view>
+          </view>
+        </block>
+        <view class='show-loading' wx:if='{{showLoading}}'>
+          <text class='font-color-1'>已经到底啦</text>
+        </view>
+        </scroll-view>
+      </view>
+    
+  </view>
+  
+  <!-- <template is='footer' data='{{navbar}}' /> -->
+</view>

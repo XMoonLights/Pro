@@ -1,0 +1,29 @@
+/* pages/m_collect/m_collect.wxss */
+.goods-float-left .goods-details .title{
+  margin: 0 0 60rpx 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:2;
+  overflow: hidden;
+}
+.goods-float-left .goods-details .price>text:last-of-type{
+  text-decoration: line-through;
+  margin-left: 20rpx;
+}
+
+.collect-none{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.collect-none>image{
+  width: 200rpx;
+  height: 200rpx;
+  margin-bottom: 60rpx;
+}

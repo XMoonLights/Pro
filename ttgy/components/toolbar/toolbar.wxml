@@ -1,0 +1,5 @@
+<!--components/toolbar/toolbar.wxml-->
+<view class='tool-bar'>
+  <image src='../../public/images/toTop.png'></image>
+  <text class='font-color-1'>顶部</text>
+</view>

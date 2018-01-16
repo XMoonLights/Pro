@@ -1,0 +1,85 @@
+<!--pages/check_order/check_order.wxml-->
+<view class='container'>
+  <view class='order-header'>
+    <view class='order-message btn-next' bindtap='toAddress'>
+      <view class='icon'>
+        <image src='../../public/images/location.png'></image>
+      </view>
+      <view class='details' wx:if='{{address!==null}}'>
+        <view class='details_users'>
+          <text>{{address.name}}</text>
+          <text>{{address.mobile}}</text>
+          <text class='btn-color-1' wx:if='{{address.is_default}}'>默认</text>
+        </view>
+        <view class='details_address'>
+          <text>{{address.address}}</text>
+        </view>
+      </view>
+      <view class='details' wx:else>
+        <text class='font-color-1'>请选择送货地址</text>
+      </view>
+    </view>
+    <view class='order-time' bindtap='showTimePicker'>
+      <view class='icon'>
+        <image src='../../public/images/time.png'></image>
+      </view>
+      <view class='details'>
+        <text class='font-color-1'>立即送出</text>
+        <text class='font-color-2'>{{order.tom_time}} 周{{order.week}} {{select_time}}</text>
+      </view>
+    </view>
+  </view>
+  <view class='order-goods btn-next' bindtap='toInventory'>
+    <view class='order-goods-img'>
+      <block wx:for="{{order.cart.shopping}}" wx:key="id">
+        <view wx:if='{{index<3}}' class='goods-img-box'>
+          <image src='{{item.img_url}}'></image>
+          <text class='font-color-2 goods-quantity'>×{{item.number}}</text>
+        </view>
+      </block>
+    </view>
+    <text>共{{order.cart.shopping.length}}件</text>
+  </view>
+  <view class='order-remarks'>
+    <input type='text' placeholder='留言(45字以内)' bindinput='getRemarks'></input>
+  </view>
+  <view class='order-count'>
+    <view class='total'>
+      <text>商品金额</text>
+      <text class='font-color-2'>+￥{{priceSum}}</text>
+    </view>
+    <view class='carriage'>
+      <text>运费</text>
+      <text class='font-color-2'>+￥{{carriage==null?"0":carriage}}</text>
+    </view>
+  </view>
+  <view class='footer-bar'>
+    <view class='count'>
+      <text class='font-color-2'>合计：¥{{priceSum+carriage}}</text>
+    </view>
+    <view class='btn-color-1 balance' bindtap='toPaySuccess'>
+      立即下单
+    </view>
+  </view>
+  <view class='modal-time' wx:if='{{showTimePicker}}' bindtap='hiddenTimePicker'>
+    <view class='bg-3 time-picker'>
+      <view class='time-picker-header'>
+        <text class='font-color-4'>配送时间</text>
+      </view>
+      <view class='time-picker-body'>
+      <text class='font-color-2'>选择时间段</text>
+      <view class='bg-2 time-picker-list'>
+        <block wx:for='{{time}}' wx:key='*this'>
+          <view class='time-picker-li {{current_time==index?"on":""}}' data-current='{{index}}' data-time='{{item}}' catchtap='chooseTime'>
+            <text>{{item}}</text>
+            <image src='../../public/images/selected.png' wx:if='{{current_time==index}}'></image>
+          </view>
+        </block>
+      </view>
+      </view>
+      <!-- <view class='btn-color-1 time-picker-footer' data-time='{{item}}' catchtap='submitTime'>
+        确定
+      </view> -->
+    </view>
+  </view>
+</view>

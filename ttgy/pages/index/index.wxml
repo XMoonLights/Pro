@@ -1,0 +1,130 @@
+<import src="../../components/footer/footer.wxml" />
+<!--index.wxml-->
+<view class="container">
+  <scroll-view scroll-y="true" style='height:100%;' bindscrolltolower="loadMore">
+    <view class='top-bar'>
+      <view class='btn-color-2 top-bar-address'>
+        <image src='../../public/images/address.png'></image>
+        <text>{{city_name==''?"":city_name}}</text>
+      </view>
+      <view class='top-bar-search' bindtap='toSearch'>
+        <image src='../../public/images/search.png'></image>
+        <text class='font-color-1'>请输入商品名称</text>
+      </view>
+    </view>
+    <banner img='{{images}}'></banner>
+    <view class='customer-tips'>
+      <block wx:for="{{tips}}" wx:key="id">
+        <view data-tips='{{item.id}}' class='customer-tips-li' bindtap='toClassify'>
+          <image src='{{item.img_url}}'></image>
+          <text>{{item.title}}</text>
+        </view>
+      </block>
+    </view>
+    <view class='ad'>
+      <text class='ad-title font-color-2 font-size-1'>今日头条</text>
+      <swiper autoplay='true' circular='true' interval='3000' duration='500' vertical='true'>
+        <block wx:for="{{ad_title}}" wx:key="*this">
+          <swiper-item>
+            <text>{{item}}</text>
+          </swiper-item>
+        </block>
+      </swiper>
+      <!-- <block wx:for="{{['会员日专享-优选佳沛金果59.9元6个，买1送1']}}" wx:key="*this">
+      <text class='ad-content'>{{item}}</text>
+    </block> -->
+    </view>
+    <view class='favourable'>
+      <block wx:for="{{favourable}}" wx:key="name">
+        <view class='favourable-item'>
+          <image src='{{item.img_url}}' mode='widthFix'></image>
+          <!-- <view class='favourable-title'>
+          <image src='../../public/images/goods_favourable.png'></image>
+          <text>{{item.title}}</text>
+        </view>
+        <view class='favourable-content clearfix'>
+          <image src='{{item.img_url}}'></image>
+          <view>
+            <text class='font-color-2'>{{item.goods.price}}</text>
+            <text>{{item.description}}</text>
+          </view>
+        </view> -->
+        </view>
+      </block>
+    </view>
+    <view class='goods-new'>
+      <view class='goods-tips-title'>
+        <image src='../../public/images/icon_new.png'></image>
+        <text class='font-color-2'>新品首发</text>
+      </view>
+      <view class='goods-new-content'>
+        <image src='{{ad}}' mode='widthFix'></image>
+        <view class='goods-new-list'>
+          <block wx:for="{{newGoods}}" wx:key="id">
+            <view class='goods-new-li' data-goodsId='{{item.id}}' bindtap='toDetails'>
+              <image mode='widthFix' src='{{item.img_url}}'></image>
+              <view class='title'>
+                <text class='font-size-1'>{{item.subtitle}}</text>
+                <text class='font-color-1'>{{item.title}}</text>
+              </view>
+              <view class='price'>
+                <text class='font-color-2'>￥</text>
+                <text class='font-color-2 font-size-1'>{{item.price_single}}</text>
+                <text class='font-color-1'> /{{item.units}}</text>
+              </view>
+              <text class='btn-color-2'>立省6.8元</text>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+    <!-- <scroll-view scroll-y="true" style='height:100%;' bindscrolltolower="loadMore"> -->
+    <view class='goods-hot'>
+      <view class='goods-tips-title'>
+        <image src='../../public/images/icon_hot.png'></image>
+        <text class='font-color-2'>热卖单品</text>
+      </view>
+      <view class='goods-hot-list'>
+        <block wx:for="{{hotGoods}}" wx:key="id">
+          <view class='goods-hot-li' data-goodsId='{{item.id}}' bindtap='toDetails'>
+            <view class='show-picture'>
+              <image src='{{item.img_url}}'></image>
+            </view>
+            <view class='show-content'>
+              <view class='title'>
+                <text class='font-size-1'>{{item.subtitle}}</text>
+                <text class='font-color-1'>{{item.title}}</text>
+              </view>
+              <view class='price font-color-1'>
+                <text class='font-color-2'>￥</text>
+                <text class='font-color-2 font-size-1'>{{item.price_single}}</text>
+                <text>/{{item.units}}</text>
+              </view>
+              <image src='../../public/images/car.png' data-id='{{item.id}}' catchtap='joinCar'></image>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class='show-loading' wx:if='{{showLoading}}'>
+      <text class='font-color-1'>已经到底啦</text>
+    </view>
+  </scroll-view>
+  <!-- <template is='footer' data='{{navbar}}' />  -->
+  <view class='bg-4 modal-city' wx:if='{{modal}}'>
+    <view class='bg-3 city-picker'>fffffff
+      <view class='city-picker-header'>
+        <text class='font-color-4'>选择所在城市</text>
+      </view>
+      <view class='city-picker-body'>
+        <view class='bg-2 city-picker-list'>
+          <block wx:for='{{city}}' wx:key='city_id'>
+            <view class='city-picker-li {{current_city==index?"on":""}}' data-name='{{item.name}}' data-city='{{item}}' bindtap='chooseCity'>
+              <text>{{item.name}}</text>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

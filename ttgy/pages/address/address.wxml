@@ -1,0 +1,25 @@
+<!--pages/address/address.wxml-->
+<view class='container'>
+  <view class='address-list'>
+    <block wx:for="{{addressList}}" wx:key="id">
+      <view class='address-li'>
+        <view class='address-li-details' data-index='{{index}}' bindtap='selectAddress'>
+          <view class='user-phone'>
+            <text class='font-size-1'>{{item.name}}</text>
+            <text class='font-color-1'>{{item.mobile}}</text>
+          </view>
+          <text class='font-color-1'>{{item.address}}</text>
+        </view>
+        <view class='address-li-operate'>
+          <icon type='success' size='26' color="{{item.is_default==1?'#e72142':'grey'}}" data-index='{{index}}' data-address='{{item}}' catchtap='setDefaultAddress'></icon>
+          <text class='{{item.is_default==1?"font-color-2":""}}'>默认地址</text>
+          <view class='operate-btns'>
+            <image data-index='{{index}}' src='../../public/images/modify.png' catchtap='address_modify'></image>
+            <image data-id='{{item.id}}' src='../../public/images/delete.png' catchtap='address_delete'></image>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <button class='btn-color-1 address-create' bindtap='toCreateAddress'>+新建地址</button>
+</view>

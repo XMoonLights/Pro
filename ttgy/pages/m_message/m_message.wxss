@@ -1,0 +1,87 @@
+/* pages/m_message/m_message.wxss */
+
+.clear-message {
+  text-align: right;
+}
+
+.clear-message>text {
+  display: inline-block;
+  padding: 30rpx;
+}
+.message-li{
+  margin-bottom: 30rpx;
+}
+
+.list-style-second {
+  padding: 30rpx;
+  background-color: #fff;
+  border-top: 1rpx solid #d9d9d9;
+}
+
+.list-header{
+  position: relative;
+}
+.list-header .title {
+  font-weight: 400;
+  display: block;
+  margin: 10rpx 0;
+}
+
+.list-header>image {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.list-content>text{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:5;
+  overflow: hidden;
+  margin-top: 20rpx;
+  line-height: 50rpx;
+}
+
+.list-footer{
+  text-align: right;
+}
+.list-footer>text{
+  display: inline-block;
+  padding: 4rpx 30rpx 4rpx 10rpx;
+  border-radius: 6rpx;
+  background-color: #f0f0f0;
+}
+.btn-bottom:before{
+  right: 6rpx;
+  border-top-width: 10rpx;
+  border-left-width: 10rpx;
+  border-right-width: 10rpx;
+  margin-top: -6rpx;
+}
+.btn-bottom:after{
+  right: 10rpx;
+  border-top-width: 6rpx;
+  border-left-width: 6rpx;
+  border-right-width: 6rpx;
+  margin-top: -6rpx;
+  border-top-color: #f0f0f0;
+}
+
+
+.message-none{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.message-none>image{
+  width: 200rpx;
+  height: 200rpx;
+  margin-bottom: 60rpx;
+}

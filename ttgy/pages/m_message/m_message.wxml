@@ -1,0 +1,27 @@
+<!--pages/m_message/m_message.wxml-->
+<view class='container'>
+  <view wx:if="{{message.length>0}}" class='message-list'>
+    <view class='clear-message'>
+      <text class='font-color-1' bindtap='font-color-1 clearMessage'>全部删除</text>
+    </view>
+    <block wx:for="{{message}}" wx:key='id'>
+      <view class='message-li list-style-second'>
+        <view class='list-header'>
+          <text class='font-size-1 title'>{{item.title}}</text>
+          <text class='time font-color-1'>{{item.time}}</text>
+          <image src='../../public/images/delete.png' data-id="{{item.id}}" bindtap='deleteMessage'></image>
+        </view>
+        <view class='list-content'>
+          <text class='font-color-1'>{{item.content}}</text>
+        </view>
+        <view class='list-footer'>
+          <text class='btn-bottom font-color-1'>展开</text>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view wx:else class='message-none'>
+    <image src='../../public/images/message_none.png'></image>
+    <text class='font-color-1'>您还没有收到任何消息</text>
+  </view>
+</view>

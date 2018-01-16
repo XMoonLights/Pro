@@ -1,0 +1,22 @@
+<!--pages/m_collect/m_collect.wxml-->
+<view class='container'>
+  <view wx:if="{{collect.length>0}}" class='collect-list'>
+    <block wx:for="{{collect}}" wx:key='id'>
+      <view class='goods-float-left clearfix' data-id='{{item.id}}' bindtap='toGoodsDetails'>
+        <image src='{{item.img_url}}'></image>
+        <view class='goods-details'>
+          <view class='title'>{{item.subtitle}}</view>
+          <view class='price'>
+            <text class='font-color-2'>￥{{item.price_single}}</text>
+            <text class='font-color-1'>￥{{item.price_original}}</text>
+          </view>
+          <image src="../../public/images/delete.png" data-id="{{item.id}}" bindtap='deleteCollect'></image>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view wx:else class='collect-none'>
+    <image src='../../public/images/collect_none.png'></image>
+    <text class='font-color-1'>您还没有任何收藏内容</text>
+  </view>
+</view>

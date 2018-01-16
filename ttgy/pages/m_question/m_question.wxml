@@ -1,0 +1,34 @@
+<!--pages/m_question/m_question.wxml-->
+<view class='container'>
+  <view class='bg-5 font-color-4 question-header'>
+    <image src='../../public/images/question_header.png'></image>
+    <text>亲爱的踢踢果粉们，在遇到问题时，请记得第一 时间联系我们哦！</text>
+  </view>
+
+  <view class='question-list'>
+    <block wx:for="{{question}}" wx:key="id">
+      <view class='question-li btn-bottom' data-index="{{index}}" bindtap='showAnswer'>
+        <text>{{item.title}}</text>
+      </view>
+      <view class='answer-list' wx:if="{{show_answer===index}}">
+        <block wx:for="{{item.answer}}" wx:key="*this">
+          <view class='answer-li font-color-1 font-size-2'>
+            <text>{{index+1}}、{{item.title}}</text>
+            <text>{{item.content}}</text>
+          </view>
+        </block>
+      </view>
+    </block>
+  </view>
+
+  <view class='question-footer'>
+    <text class='font-color-2'>温馨提示</text>
+    <view class='prompt-list'>
+      <block wx:for="{{prompt}}" wx:key="*this">
+        <view class='prompt-li'>
+          <text class='font-color-1 font-size-2'>{{index+1}}、{{item}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

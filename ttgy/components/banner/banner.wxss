@@ -1,0 +1,4 @@
+/* components/banner/banner.wxss */
+.slide-image{
+  overflow: hidden;
+}

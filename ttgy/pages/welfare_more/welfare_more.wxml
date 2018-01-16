@@ -1,0 +1,16 @@
+<import src="../../components/footer/footer.wxml" />
+<!--pages/welfare_more/welfare_more.wxml-->
+<view class='container'>
+  <image src='../../public/images/awards_bg.png' style='width:100%;' mode='widthFix'></image>
+
+  <view class='welfare'>
+    <image src='../../public/images/awards_panel.png' style='width:100%;' mode='widthFix'></image>
+    <text class='activity-person'>人数 {{activity.apply_people}}/{{activity.with_people}}</text>
+    <canvas class='welfare-result {{(activity.apply_people==activity.with_people)?"welfare-start":""}}' canvas-id='welfare' disable-scroll='false' bindtouchstart='{{(activity.apply_people==activity.with_people&&join)?"touchStart":""}}' bindtouchmove='{{(activity.apply_people==activity.with_people&&join)?"touchMove":""}}'></canvas>
+    <view class='welfare-text'>{{(activity.apply_people==activity.with_people)?result:"还未开奖"}}</view>
+    <text class='btn btn-color-4 welfare-btn' wx:if='{{!join}}'>人数已满</text>
+    <text wx:else class='btn {{(activity.is_apply>0)?"btn-color-4":"btn-color-1"}} welfare-btn' bindtap='{{(activity.is_apply>0)?"":"joinActivity"}}'>{{(activity.is_apply>0)?"已参与":"参与夺宝"}}</text>
+  </view>
+
+  <template is='footer' data='{{navbar}}' />
+</view>

@@ -1,0 +1,13 @@
+<!--components/navbar/navbar.wxml-->
+<view class='navbar'>
+  <block wx:for='{{icon}}' wx:key='text'>
+    <!-- <navigator class='icon' data-index='{{index}}' bindtap='select' url="{{item.pagePath}}">
+      <image src='{{target==index?item.selectedIconPath:item.iconPath}}'></image>
+      <text>{{item.text}}</text>
+    </navigator> -->
+     <view class='icon' data-index='{{index}}' bindtap='select'>
+      <image src='{{target==index?item.selectedIconPath:item.iconPath}}'></image>
+      <text>{{item.text}}</text>
+    </view> 
+  </block>
+</view>

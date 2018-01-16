@@ -1,0 +1,19 @@
+/* components/toolbar/toolbar.wxss */
+.tool-bar{
+  position: fixed;
+  right: 20rpx;
+  bottom: 200rpx;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background-color: #fff;
+  border:1rpx solid #d9d9d9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.tool-bar>image{
+  width: 50rpx;
+  height: 50rpx;
+}

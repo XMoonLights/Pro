@@ -1,0 +1,19 @@
+/* pages/m_set_name/m_set_name.wxss */
+.set-name{
+  margin: 30rpx 0;
+  padding: 30rpx;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+}
+.set-name>input{
+  flex: 1;
+  display: inline-block;
+}
+ .prompt{
+  display: inline-block;
+  margin-left:30rpx; 
+} 
+.btn-set-name{
+  margin: 60rpx 30rpx 0;
+}

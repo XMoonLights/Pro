@@ -1,0 +1,48 @@
+/* pages/welfare_more/welfare_more.wxss */
+.container{
+  position: relative;
+}
+.btn-color-4{
+  background-color: #d9d9d9;
+  color: #ffffff;
+}
+.welfare{
+  position: absolute;
+  top: 100rpx;
+  left: 50%;
+  width: 600rpx;
+  margin: 110rpx 0 0 -300rpx;
+}
+.activity-person{
+  position: absolute;
+  top: 36rpx;
+  left: 30rpx;
+  color: white;
+}
+.welfare-result{
+  width:400rpx;
+  height:80rpx;
+  background:transparent;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.welfare-start{
+  z-index: 99;
+}
+.welfare-text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%); 
+  font-size: 32rpx;
+  color: #efefef;
+  letter-spacing: 10rpx;
+}
+.welfare-btn{
+  position: absolute;
+  bottom: -40rpx;
+  left: 50%;
+  transform: translate(-50%);
+}

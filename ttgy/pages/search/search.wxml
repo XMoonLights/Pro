@@ -1,0 +1,50 @@
+<!--pages/search/search.wxml-->
+<view class='container bg-2'>
+  <view class='top-bar'>
+    <view class='top-bar-search'>
+      <image src='../../public/images/search.png'></image>
+      <input type='text' placeholder='请输入商品名称' bindinput='searchValue'></input>
+      <text class='btn-color-1 btn-search' bindtap='searchGoods'>搜索</text>
+    </view>
+  </view>
+  <view class='search-record' wx:if="{{result.list.length==0||result.length==0}}">
+    <view class='records-header'>
+      <text>历史记录</text>
+      <text class='font-color-1 clear-record' bindtap='clearTips'>清空记录</text>
+    </view>
+    <view class='records'>
+      <block wx:for='{{history}}' wx:key="*this">
+        <text class='font-color-2 record-li' data-value="{{item.key_word}}" bindtap='searchByTips'>{{item.key_word}}</text>
+      </block>
+    </view>
+  </view>
+  <view class='search-hot' wx:if="{{result.list.length==0||result.length==0}}">
+    <view class='hot-header'>
+      <text>热门搜索</text>
+    </view>
+    <view class='hots'>
+      <block wx:for='{{hot}}' wx:key="*this">
+        <text class='font-color-2 hot-li' data-value="{{item.word}}" bindtap='searchByTips'>{{item.word}}</text>
+      </block>
+    </view>
+  </view>
+  <view class='search-result' wx:if="{{result.list.length>0}}">
+    <text class='result-quantity'>搜索到{{result.list.length}}条“{{result.word}}”相关的商品</text>
+    <view class='result-list'>
+      <block wx:for='{{result.list}}' wx:key="id">
+        <view class='goods-float-left' data-goodsId='{{item.id}}' bindtap='toDetails'>
+          <image src='{{item.cover.img_url}}'></image>
+          <view class='goods-details'>
+            <view class='title'>{{item.subtitle}}</view>
+            <view class='font-color-1'>{{item.title}}</view>
+            <view class='price font-color-1'>
+              <text class='font-color-2'>￥</text>
+              <text class='font-color-2 font-size-1'>{{item.price_single}}</text>/{{item.units}}
+            </view>
+            <image src='../../public/images/car.png' data-id='{{item.id}}' catchtap='joinCar'></image>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

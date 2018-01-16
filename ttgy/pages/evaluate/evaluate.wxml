@@ -1,0 +1,52 @@
+<!--pages/evaluate/evaluate.wxml-->
+<view class='container'>
+  <view class='goods-evaluate-list'>
+    <view class='goods-evaluate-li'>
+      <view class='evaluate-header clearfix'>
+        <image src='{{order.item.img_url}}'></image>
+        <view>
+          <text>{{order.item.subtitle}}</text>
+        </view>
+      </view>
+      <view class='evaluate-content'>
+        <textarea class='evaluate' placeholder='您的评价会让我们做的更好哦！' bindinput='getComment'></textarea>
+        <view class='img-up clearfix'>
+          <view class='upper-img'>
+            <block wx:for='{{upperImg}}' wx:key='id'>
+              <image src='{{item}}'></image>
+            </block>
+          </view>
+          <view class='btn-imgUp' bindtap='upperImg'>
+            <image src='../../public/images/camera.png'></image>
+          </view>
+        </view>
+      </view>
+      <view class='evaluate-footer'>
+        <text>商品评价</text>
+        <block wx:for="{{[1,2,3,4,5]}}" wx:key='*this'>
+          <view data-index="{{index+1}}" class='goods-score {{index<goodsScore?"on":""}}' bindtap='goodsScore'>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+  <view class='other-score'>
+    <view class='evaluate-footer'>
+      <text>物流评价</text>
+      <block wx:for="{{[1,2,3,4,5]}}" wx:key='*this'>
+        <view data-index="{{index+1}}" class='goods-score {{index<transportScore?"on":""}}' bindtap='transportScore'>
+        </view>
+      </block>
+    </view>
+    <view class='evaluate-footer'>
+      <text>服务评价</text>
+      <block wx:for="{{[1,2,3,4,5]}}" wx:key='*this'>
+        <view data-index="{{index+1}}" class='goods-score {{index<serviceScore?"on":""}}' bindtap='serviceScore'>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class='evaluate-bar'>
+    <text class='btn-color-1 btn-evaluate' type='button' bindtap='toEvaluateResult'>发表评论</text>
+  </view>
+</view>

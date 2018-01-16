@@ -1,0 +1,35 @@
+<import src="../../components/footer/footer.wxml" />
+<!--pages/welfare/welfare.wxml-->
+<view class='container'>
+  <view class='activity-header'>我的活动积分：{{points}}</view>
+  <view class="canvas-container">
+			<view  animation="{{animationData}}" class="canvas-content" >
+				<canvas style="width: 300px; height: 300px;" class="canvas-element" canvas-id="welfare"></canvas>
+
+				 <view class="canvas-line">
+					<view class="canvas-litem" wx:for="{{awardsList}}" wx:key="unique" style="-webkit-transform: rotate({{item.lineTurn}});transform: rotate({{item.lineTurn}})"></view>
+				</view> 
+
+				<view class="canvas-list">
+					<view class="canvas-item" wx:for="{{awardsList}}" wx:key="unique">
+				  		<view class="canvas-item-text" style="-webkit-transform: rotate({{item.turn}});transform: rotate({{item.turn}})">{{item.award}}</view>
+					</view>
+				</view>
+
+				
+			</view>
+
+			<view bindtap="getLottery" class="canvas-btn {{btnDisabled}}">抽奖</view>		
+		</view>
+  <view class='activity-footer'>
+    <text>活动规则</text>
+    <view class='rule-list'>
+      <block wx:for='{{activity_rule}}' wx:key='id'>
+        <view class='rule-item'>
+          <text>{{index+1}}.{{item.text}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+  <template is='footer' data='{{navbar}}' /> 
+</view>

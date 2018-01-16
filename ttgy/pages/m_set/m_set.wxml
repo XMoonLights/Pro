@@ -1,0 +1,36 @@
+<!--pages/m_set/m_set.wxml-->
+<view class='container'>
+  <view class='set-header'>
+    <image src='{{head==null?"../../public/images/goods_list_01.png":head}}' bindtap='setImage'></image>
+  </view>
+  <view class='set-list'>
+    <view class='set-li btn-next' bindtap='toSetName'>
+      <text>昵称</text>
+      <text class='font-color-1'>{{name}}</text>
+    </view>
+    <view class='set-li btn-next' bindtap='showModal'>
+      <text>性别</text>
+      <text class='hidden'>{{sex}}</text>
+    </view>
+    <picker mode="date" value="{{borthday==null?'2017-09-10':borthday}}" bindchange="bindDateChange">
+      <view class="set-li btn-next">
+        <text>生日</text>
+        <text class='hidden'>{{borthday}}</text>
+      </view>
+    </picker>
+    <view class='set-li btn-next' bindtap='toSetPhone'>
+      <text>手机绑定</text>
+      <text class='font-color-1'>{{bind?"已绑定":"未绑定"}}</text>
+    </view>
+  </view>
+  <view class='modal' wx:if="{{choose_sex}}" bindtap='hiddenModal'>
+    <view class='modal-content'>
+      <text class='title'>选择性别</text>
+      <radio-group class="radio-group" bindchange="radioChange">
+        <label class="radio" wx:for="{{sex_choose}}" wx:key='value'>
+          <radio value="{{item.value}}" checked="{{item.checked}}" />{{item.name}}
+        </label>
+      </radio-group>
+    </view>
+  </view>
+</view>

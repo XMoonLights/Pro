@@ -1,0 +1,85 @@
+/* pages/create_address/create_address.wxss */
+.address-create{
+  background-color: #ffffff;
+}
+.address-create input,.address-details>textarea{
+  flex: 1;
+}
+.username,.phone,.address{
+  height: 96rpx;
+  padding: 0 20rpx;
+  border-bottom: 1px solid #f5f5f5;
+  display: flex;
+  align-items: center;
+}
+.username>text,.phone>text,.address>text,.address-details>text{
+  width: 190rpx;
+}
+.address .picker{
+  width: 100%;
+  height: 100%;
+  line-height: 96rpx;
+  position: relative;
+}
+.picker text{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.picker .picker-region{
+  margin-left: 190rpx;
+}
+.address-details{
+  height: 160rpx;
+  padding: 20rpx;
+  border-bottom: 1px solid #f5f5f5;
+  display: flex;
+}
+
+.address-create .check{
+  padding: 20rpx;
+}
+.address-operate>icon{
+  float: right;
+}
+
+.address-save{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 0;
+  line-height: 98rpx;
+}
+
+
+.modal-address{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+}
+.address-picker{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.address-picker-header{
+  text-align: center;
+  padding: 30rpx 0;
+  border-bottom: 2rpx solid #d9d9d9;
+  position: relative;
+}
+.address-picker-header>icon{
+  position: absolute;
+  top: 50%;
+  right: 30rpx;
+  margin-top: -12px;
+}
+.address-picker-footer{
+  padding: 30rpx;
+  text-align: center;
+}

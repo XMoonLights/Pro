@@ -1,0 +1,10 @@
+<!--pages/m_set_name/m_set_name.wxml-->
+<view class='container'>
+  <view class='set-name'>
+    <input type='text' placeholder='请输入昵称' value='{{nickname}}' bindinput='getNickName'></input>
+    <icon type='clear' size='30' bindtap='clearInput'></icon>
+  </view>
+  <text class='prompt font-color-1'>4-20个字符，可由中英文、数字、“-”、“_”组成</text>
+  <button type='button' class='btn-color-1 btn-set-name' bindtap='setNickName'>保存</button>
+  <view style='text-align:right;padding:0 30rpx;'><text class='font-color-2' wx:if='{{prompt!==undefined&&prompt!==""}}'>{{prompt}}</text></view>
+</view>

@@ -1,0 +1,20 @@
+<!--pages/m_set_phone/m_set_phone.wxml-->
+<view class='container'>
+  <view class='m-set'>
+    <text>手机号码</text>
+    <input type='text' bindinput='getMobile'></input>
+  </view>
+  <view class='m-set'>
+    <text>验证码</text>
+    <input type='text' bindinput='getCode'></input>
+    <button class='btn btn-size-1 btn-color-1 get-code' type='button' disabled='{{!code}}' bindtap='{{test?"setCode":""}}'>
+      <text hidden='{{!code}}'>获取验证码</text>
+      <text hidden='{{code}}'>已发送(<text class='interval'>{{num}}</text>s)</text>
+    </button>
+  </view>
+  <view class='prompt' wx:if='{{prompt!==undefined&&prompt!==""}}'>
+    <icon type='warn' size='15'></icon>
+    <text>{{prompt}}</text>
+  </view>
+  <button type='button' class='btn-color-1 btn-set' bindtap='{{bind?"bindMobile":"changeMobile"}}'>确定</button>
+</view>

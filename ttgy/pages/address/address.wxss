@@ -1,0 +1,45 @@
+/* pages/address/address.wxss */
+.address-list{
+  margin-bottom: 120rpx;
+}
+.address-li{
+  background-color: #ffffff;
+  margin-bottom: 30rpx;
+}
+.address-li-details{
+  padding: 20rpx;
+}
+.user-phone>text:last-child{
+  float: right;
+}
+.address-li-operate{
+  border-top: 1px solid #dddddd;
+  position: relative;
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  padding-left:20rpx; 
+}
+.address-li-operate>text{
+  margin-left: 20rpx;
+}
+.operate-btns{
+  position: absolute;
+  right: 0;
+}
+.operate-btns>image{
+  width: 50rpx;
+  height: 50rpx;
+  margin: 0 30rpx;
+}
+
+/* address-create */
+.address-create{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  font-size: 36rpx;
+  border-radius: 0;
+  line-height: 98rpx;
+}

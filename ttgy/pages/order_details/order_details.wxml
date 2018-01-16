@@ -1,0 +1,195 @@
+<!--pages/order_details/order_details.wxml-->
+<view class='container'>
+  <view class='btn-color-1 font-size-1 order-state'>
+    <text wx:if='{{order_state==0}}'>{{details.order.status_text}}</text>
+    <text wx:if='{{order_state==1}}'>{{details.order.status_text}}</text>
+    <text wx:if='{{order_state==2}}'>{{details.order.status_text}}</text>
+    <text wx:if='{{order_state==3}}'>{{details.order.status_text}}</text>
+  </view>
+  <!-- <view class='logistical-details'>
+    <view class='logistical-list bg-2' wx:if='{{show_logistical}}'>
+      <block wx:for='{{logistical}}' wx:key='id'>
+        <view class='logistical-li'>
+          <image src='../../public/images/status.png'></image>
+          <text>{{item.title}}</text>
+          <text class='font-color-1 font-size-2'>{{item.date}}</text>
+        </view>
+      </block>
+    </view>
+    <view class='logistical-list bg-2' wx:else>
+      <block wx:for='{{logistical}}' wx:key='id'>
+        <view class='logistical-li' wx:if='{{index<1}}'>
+          <image src='../../public/images/status.png'></image>
+          <text>{{item.title}}</text>
+          <text class='font-color-1 font-size-2'>{{item.date}}</text>
+        </view>
+      </block>
+    </view>
+    <view class='bg-2 show-logistical' bindtap='showLogistical'>
+      <text class='font-color-1 {{show_logistical?"btn-top":"btn-bottom"}}'>{{show_logistical?"收起":"展开"}}</text>
+    </view>
+  </view> -->
+  <!-- <view class='bg-2 order-state-pay' wx:if='{{order_state==0}}'>
+    <text>未付款</text>
+  </view>
+   <view class='location' wx:if='{{order_state==1}}'>
+    <view class='location-map'>
+      <image src='../../public/images/map_location.png'></image>
+    </view>
+    <view class='order-state'>
+      <view class='order-state-time'>
+        <view class='outer-circle'>
+          <canvas style='width:300px;height:200px;' canvas-id='showTime'></canvas>
+        </view>
+      </view>
+      <view class='order-state-details order-state-loading' wx:if="{{order_state_num ==1}}">
+        <text class='font-size-1'>等待商家接单</text>
+        <button class='btn-size-1' type='button' data-modal='cacel' bindtap='showModal'>取消订单</button>
+      </view>
+      <view class='order-state-details' wx:if="{{order_state_num == 2}}">
+        <text class='font-size-1 btn-next'>商家已接单</text>
+      </view>
+      <view class='order-state-details' wx:if="{{order_state_num == 3}}">
+        <text class='font-size-1 btn-next'>骑手已接单</text>
+        <button class='btn-size-1' type='button'>联系骑手（刘晴雯）</button>
+      </view>
+      <view class='order-state-details' wx:if="{{order_state_num == 4}}">
+        <text class='font-size-1 btn-next'>骑手已取货</text>
+        <button class='btn-size-1' type='button'>联系骑手（刘晴雯）</button>
+      </view>
+    </view>
+  </view> 
+  <view class='order-state-refund' wx:if='{{order_state==3}}'>
+    <view class='refund-time'>
+      <text>申请退款时间</text>
+      <text class='font-color-1'>{{details.order.create_date}}</text>
+    </view>
+    <view class='refund-content'>
+      <icon type='success' size='20'></icon>
+      <text class='font-color-3 font-size-1'>已退款</text>
+      <text class='font-size-1'>￥{{details.order.count_money}}</text>
+    </view>
+    <view class='refund-card clearfix'>
+      <text class='font-color-1'>退回至银行卡（尾号8107）</text>
+      <text class='font-color-1'>￥{{details.order.count_money}}</text>
+    </view>
+  </view>
+  <view class='order-state-evaluate' wx:if='{{order_state==2}}'>
+    <text class='font-size-1 btn-next'>订单已完成</text>
+    <text>感谢您对连城商城的信任，期待再次光临</text>
+    <button class='btn-color-1 font-size-1' type='button' bindtap='toEvaluate'>去评价</button>
+  </view> -->
+
+  <!-- 商品详情 -->
+  <view class='goods-details'>
+    <text class='font-color-1'>商品详情</text>
+    <view class='goods-list'>
+      <!-- <block wx:for="{{inventory}}" wx:key='id'> -->
+      <view class='goods-li clearfix'>
+        <image src='{{details.item.img_url}}'></image>
+        <view class='details'>
+          <text>{{details.item.subtitle}}</text>
+          <view class='sale'>
+            <text class='font-color-2'>￥</text>
+            <text class='font-color-2 font-size-1'>{{details.item.price_single}}</text>
+            <text class='font-color-1'>￥{{details.item.price_original}}</text>
+            <text class='font-color-1'>×{{details.order.item_num}}</text>
+          </view>
+        </view>
+      </view>
+      <!-- </block> -->
+    </view>
+    <view class='goods-count'>
+      <view class='total'>
+        <text class='font-color-1'>商品金额</text>
+        <text>￥{{details.order.money}}</text>
+      </view>
+      <view class='carriage'>
+        <text class='font-color-1'>+运费</text>
+        <text wx:if='{{order_state==0}}'>￥{{details.order.freight==null?0:details.order.freight}}</text>
+        <text wx:else>￥{{details.record.freight==null?0:details.record.freight}}</text>
+      </view>
+    </view>
+    <view class='out-of-pocket'>
+      <view class='call' data-modal='call' bindtap='showModal'>
+        <image src='../../public/images/phone.png'></image>
+        <text class='font-color-2'>联系客服</text>
+      </view>
+      <text class='font-size-1'>实付款：￥{{details.order.count_money}}</text>
+    </view>
+  </view>
+  <!-- 配送信息 -->
+  <view class='delivery-details'>
+    <text class='font-color-1'>配送信息</text>
+    <view class='order-info'>
+      <text>送达时间</text>
+      <text class='font-color-1'>{{details.order.delivery_date}} {{details.order.delivery}}</text>
+    </view>
+    <view class='order-info'>
+      <text>收货地址</text>
+      <text class='font-color-1'>{{details.order.address}}</text>
+    </view>
+    <view class='order-info'>
+      <text>配送方式</text>
+      <text class='font-color-1'>连城专送</text>
+    </view>
+  </view>
+  <!-- 订单信息 -->
+  <view class='order-details'>
+    <text class='font-color-1'>订单信息</text>
+    <view class='order-info'>
+      <text>订单编号</text>
+      <text class='font-color-1'>{{details.order.sn2}}</text>
+    </view>
+    <view class='order-info'>
+      <text>支付方式</text>
+      <text class='font-color-1'>在线支付</text>
+    </view>
+    <view class='order-info'>
+      <text>下单时间</text>
+      <text class='font-color-1'>{{details.order.create_date}}</text>
+    </view>
+    <view class='order-info'>
+      <text>订单备注</text>
+      <text class='font-color-1'>{{details.order.memo==null?"":details.order.memo}}</text>
+    </view>
+  </view>
+  <!-- 猜你喜欢 -->
+  <view class='goods-interest'>
+    <view class='goods-tips-title'>
+      <image src='../../public/images/interest.png'></image>
+      <text class='font-color-2'>猜你喜欢</text>
+    </view>
+    <view goods-interest-list>
+      <block wx:for="{{interestGoods}}" wx:key='id'>
+        <view class='goods-interest-li'>
+          <image src='{{item.img_url}}'></image>
+          <view class='goods-detail'>
+            <text class='title'>{{item.subtitle}}</text>
+            <view class='price'>
+              <text class='font-color-2'>¥</text>
+              <text class='font-color-2 font-size-1'>{{item.price_single}}</text>
+              <text class='font-color-1'>¥{{item.price_original}}</text>
+              <image src='../../public/images/shopping_default.png' data-index='{{index}}' data-id='{{item.id}}' bindtap='joinCar'></image>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view class='order-tool-bar' style='display:{{(order_state==1||order_state==3)?"none":"flex"}}'>
+    <text class='btn font-color-1' wx:if='{{order_state==0}}'>取消订单</text>
+    <text class='btn btn-color-1' wx:if='{{order_state==0}}' bindtap='toPay'>去支付</text>
+    <text class='btn font-color-1' wx:if='{{order_state==2}}' bindtap='toRefund'>申请退款</text>
+    <text class='btn btn-color-1' wx:if='{{order_state==2}}'>去评价</text>
+  </view>
+
+  <modal wx:if="{{hidden}}" title="是否取消订单" confirm-text="是" cancel-text="否" bindcancel="cancel" bindconfirm="confirm">
+    退款金额
+    <text class='font-color-2'>{{details.order.count_money}}元</text>，将在1-3个工作日内原路返回至您的支付账号
+  </modal>
+  <modal wx:if="{{phone_call}}" confirm-text="拨打" cancel-text="取消" bindcancel="cancel" bindconfirm="callService">
+    <text>{{details.order.mobile}}</text>
+  </modal>
+</view>

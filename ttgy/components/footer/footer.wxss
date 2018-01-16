@@ -1,0 +1,23 @@
+/* components/footer/footer.wxss */
+.navbar{
+  height: 98rpx;
+  background-color: #fafafa;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  font-size: 24rpx;
+  color: #999999;
+}
+.icon{
+  flex: 1;
+  text-align: center;
+  margin: 10rpx 0;
+}
+.icon image{
+  display: block;
+  width: 48rpx;
+  height: 48rpx;
+  margin: 0 auto;
+}

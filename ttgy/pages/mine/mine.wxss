@@ -1,0 +1,103 @@
+/* pages/mine/mine.wxss */
+.admin{
+  width: 100%;
+  height: 300rpx;
+  position: relative;
+}
+.admin-details{
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  height: 100%;
+}
+.admin-details>image{
+  float: left;
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  margin: -60rpx 30rpx 0;
+}
+.admin-details .admin-details-list>text{
+  display: block;
+}
+.admin-details .admin-details-list>button{
+  display: inline-block;
+  margin-top: 30rpx;
+  padding: 10rpx 12rpx;
+  line-height: 30rpx;
+  color: #ffffff;
+  background-color: #f03c41;
+  border: 1px solid #ffffff;
+}
+.admin-tools{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.admin-tools>image{
+  width: 50rpx;
+  height: 50rpx;
+  margin: 20rpx;
+}
+
+/* tips */
+.tips{
+  background-color: #ffffff;
+}
+.order{
+  height: 80rpx;
+  padding: 0 30rpx;
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-bottom: 1px solid #eeeeee;
+}
+.order>image{
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 20rpx;
+}
+.all-order{
+  position: absolute;
+  right: 50rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.order:before{ 
+content: ''; 
+border-top: 16rpx solid transparent; 
+border-bottom: 16rpx solid transparent; 
+border-left: 16rpx solid #707070; 
+position: absolute;
+top: 26rpx; 
+right: 20rpx;
+} 
+.order:after{ 
+content: ''; 
+border-top: 12rpx solid transparent; 
+border-bottom: 12rpx solid transparent; 
+border-left: 12rpx solid #fff; 
+position: absolute; 
+top: 30rpx; 
+right: 24rpx;
+}
+.tips-li{
+  display: inline-block;
+  width: 25%;
+  text-align: center;
+  padding: 30rpx 0;
+}
+.tips-li>image{
+  width: 50rpx;
+  height: 50rpx;
+}
+.tips-li>text{
+  display: block;
+  text-align: center;
+}
+
+/* mine-list */
+.mine-list{
+  margin-top: 30rpx;
+  background-color: #ffffff;
+}

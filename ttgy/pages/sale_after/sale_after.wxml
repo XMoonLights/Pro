@@ -1,0 +1,50 @@
+<!--pages/sale_after/sale_after.wxml-->
+<view class='container'>
+  <view class='goods-evaluate-list'>
+    <view class='goods-evaluate-li'>
+      <view class='evaluate-header clearfix'>
+        <image src='{{order.item.img_url}}'></image>
+        <view>
+          <text>{{order.item.subtitle}}</text>
+        </view>
+      </view>
+      <view class='evaluate-content'>
+        <textarea class='evaluate' placeholder='您的评价会让我们做的更好哦！'></textarea>
+        <view class='img-up clearfix'>
+          <view class='upper-img'>
+            <block wx:for='{{upperImg}}' wx:key='id'>
+              <image src='{{item}}'></image>
+            </block>
+          </view>
+          <view class='btn-imgUp' bindtap='upperImg'>
+            <image src='../../public/images/camera.png'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='sale-after'>
+    <text class='font-color-1'>退货地址：</text>
+    <view class='bg-2  order-message btn-next' bindtap='toAddress'>
+      <view class='icon'>
+        <image src='../../public/images/location.png'></image>
+      </view>
+      <view class='details'>
+        <view class='details_users'>
+          <text>{{order.order.name}}</text>
+          <text>{{order.order.mobile}}</text>
+          <!-- <text class='btn-color-1' wx:if='{{address.is_default}}'>默认</text> -->
+        </view>
+        <view class='details_address'>
+          <text>{{order.order.address}}</text>
+        </view>
+      </view>
+      <!-- <view class='details' wx:else>
+        <text class='font-color-1'>请选择送货地址</text>
+      </view> -->
+    </view>
+    <text class='font-color-1 font-size-2'>注：提交售后申请后客服将会主动与您联系并协商退款事宜</text>
+    <button type='button' class='btn-color-1'>提交</button>
+  </view>
+</view>

@@ -1,0 +1,60 @@
+<import src="../../components/footer/footer.wxml" />
+<!--pages/mine/mine.wxml-->
+<view class='container'>
+  <view class='bg-1 admin'>
+    <view class='admin-details'>
+      <image src='../../public/images/adminor.png'></image>
+      <view class='admin-details-list'>
+        <text class='font-size-1'>{{nickname}}</text>
+        <button class='btn-size-1' bindtap='toSetPhone'>{{bind?'绑定新手机':'绑定手机'}}</button>
+      </view>
+    </view>
+    <view class='admin-tools'>
+      <image src='../../public/images/set.png' bindtap='toSet'></image>
+      <image src='../../public/images/message.png' bindtap='toMessage'></image>
+    </view>
+  </view>
+  <view class='tips'>
+    <view class='order' bindtap='toMineOrder'>
+      <image src='../../public/images/order.png'></image>
+      <text>我的订单</text>
+      <view class='all-order'><text class='font-color-1 font-size-2'>查看全部订单</text></view>
+    </view>
+    <view class='tips-li' bindtap='toPayOrder'>
+      <image src='../../public/images/pay.png'></image>
+      <text>待付款</text>
+    </view>
+    <view class='tips-li' bindtap='toTransportOrder'>
+      <image src='../../public/images/transport.png'></image>
+      <text>待收货</text>
+    </view>
+    <view class='tips-li' bindtap='toEvaluateOrder'>
+      <image src='../../public/images/evaluate.png'></image>
+      <text>待评价</text>
+    </view>
+    <view class='tips-li' bindtap='toRefundOrder'>
+      <image src='../../public/images/refund.png'></image>
+      <text>退款</text>
+    </view>
+  </view>
+  <view class='mine-list'>
+    <view class='order' bindtap='toCollect'>
+      <image src='../../public/images/collect.png'></image>
+      <text>我的收藏</text>
+    </view>
+    <view class='order' bindtap='toAddress'>
+      <image src='../../public/images/addressed.png'></image>
+      <text>收货地址</text>
+    </view>
+    <view class='order' bindtap='toEvaluateAll'>
+      <image src='../../public/images/rate.png'></image>
+      <text>我的评价</text>
+    </view>
+    <view class='order' bindtap='toQuestion'>
+      <image src='../../public/images/question.png'></image>
+      <text>收货常见问题</text>
+    </view>
+  </view>
+  
+  <!-- <template is='footer' data='{{navbar}}' />  -->
+</view>

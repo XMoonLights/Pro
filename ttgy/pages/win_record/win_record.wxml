@@ -1,0 +1,17 @@
+<import src="../../components/footer/footer.wxml" />
+<!--pages/win_record/win_record.wxml-->
+<view class='container'>
+  <view class='awards-record'>
+    <text>中奖纪录</text>
+    <view class='record-list'>
+      <block wx:for='{{records}}' wx:key='id'>
+        <view class='record-item' wx:if='{{item.award_id!=0}}'>
+          <text>{{item.award_name}}</text>
+          <text wx:if='{{item.is_receive==1}}' class='receive'>已领取</text>
+          <text wx:if='{{item.is_receive==0}}' data-index='{{index}}' data-record='{{item.id}}' data-awards='{{item.award_id}}' bindtap="{{item.type==2?'getAwards':''}}">{{item.type==2?'立即领奖':'前台领奖'}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+  <template is='footer' data='{{navbar}}' />
+</view>

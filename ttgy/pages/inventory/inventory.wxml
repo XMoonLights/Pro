@@ -1,0 +1,17 @@
+<!--pages/inventory/inventory.wxml-->
+<view class='container'>
+  <block wx:for="{{inventory}}" wx:key="*this">
+    <view class='goods-li clearfix'>
+      <image src='{{item.img_url}}'></image>
+      <view class='details'>
+        <text>{{item.subtitle}}</text>
+        <view class='sale'>
+          <text class='font-color-2'>￥</text>
+          <text class='font-color-2 font-size-1'>{{item.price_single}}</text>
+          <text class='font-color-1'>￥{{item.price_original}}</text>
+          <text class='font-color-1'>×{{item.number}}</text>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

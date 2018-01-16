@@ -1,0 +1,72 @@
+<import src="../../components/footer/footer.wxml" />
+<!--pages/shopping/shopping.wxml-->
+<view class='container'>
+  <view class='goods-list'>
+    <view class='goods-list-header btn-next'>
+      <text class='icon'>免运费</text>
+      <text class='font-color-1'>满100元即可免10元运费，去凑单</text>
+    </view>
+    <view class='goods-list-content'>
+      <block wx:for="{{goodsList}}" wx:key="id">
+        <view class='goods-list-item'>
+          <icon id='{{index}}' type='success' size='30' color='{{item.item.del_flag==1?"#e72142":"grey"}}' data-payState="{{item.item.del_flag}}" bindtap='selectGoods'></icon>
+          <image src='{{item.img.img_url}}'></image>
+          <view class='goods-details'>
+            <text class='title'>{{item.item.subtitle}}</text>
+            <view class='price'>
+              <text class='font-color-2'>￥</text>
+              <text class='font-color-2 font-size-1'>{{item.item.price_single}}</text>
+              <text class='font-color-1'>￥{{item.item.price_original}}</text>
+            </view>
+            <view class='quantity'>
+              <image id='reduce_{{index}}' src='../../public/images/btn_sub.png' bindtap='reduceGoods'></image>
+              <text>{{item.number}}</text>
+              <image id='add_{{index}}' src='../../public/images/btn_add.png' bindtap='addGoods'></image>
+              <view class='goods-operate'>
+                <text class='font-color-1' data-id='{{item.item.id}}' wx:if="{{index === operateItem}}" bindtap='goodsDelete'>删除</text> |
+                <text data-index='{{index}}' bindtap='goodsOperate'>{{(index === operateItem)?"完成":"编辑"}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <!-- 猜你喜欢 -->
+    <view class='goods-interest'>
+      <view class='goods-tips-title'>
+        <image src='../../public/images/interest.png'></image>
+        <text class='font-color-2'>猜你喜欢</text>
+      </view>
+      <view class='goods-interest-list'>
+        <block wx:for="{{interestGoods}}" wx:key='id'>
+          <view class='goods-interest-li'>
+            <image src='{{item.img_url}}'></image>
+            <view class='goods-detail'>
+              <text class='title'>{{item.subtitle}}</text>
+              <view class='price'>
+                <text class='font-color-2'>¥</text>
+                <text class='font-color-2 font-size-1'>{{item.price_single}}</text>
+                <text class='font-color-1'>¥{{item.price_original}}</text>
+                <image src='../../public/images/shopping_default.png' data-index='{{index}}' data-id='{{item.id}}' bindtap='joinCar'></image>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+  <view class='footer-bar'>
+    <view class='all-select'>
+      <icon type='success' size='30' color='{{icon}}' bindtap='selectAll'></icon>全选</view>
+    <view class='count'>
+      <text>合计：</text>
+      <text class='font-color-2'>¥{{total}}</text>
+      <text>不含运费</text>
+    </view>
+    <view class='balance btn-color-1' bindtap='toCheckOrder'>
+      结算（{{quantity}}）
+    </view>
+  </view>
+  
+  <!-- <template is='footer' data='{{navbar}}' />  -->
+</view>

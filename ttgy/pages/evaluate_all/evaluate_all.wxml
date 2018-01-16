@@ -1,0 +1,23 @@
+<!--pages/evaluate_all/evaluate_all.wxml-->
+<view class='container'>
+  <view class='evaluate-list'>
+    <block wx:for='{{evaluates}}' wx:key='id'>
+      <view class='evaluate-li'>
+        <image src='{{item.item_img}}'></image>
+        <view class='evaluate-content'>
+          <text class='font-color-1'>{{item.item.subtitle}}</text>
+          <text class='font-size-1'>{{item.content}}</text>
+          <view class='upperImg' wx:if='{{item.eval_img.length>0}}'>
+            <block wx:for='{{item.eval_img}}' wx:key='*this'>
+              <image src='{{item}}'></image>
+            </block>
+          </view>
+          <text class='font-color-1'>{{item.create_date}}</text>
+          <view class='reply' wx:if='{{item.reply.length>0}}'>
+            商家回复：{{item.reply}}
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

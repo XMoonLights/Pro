@@ -1,0 +1,8 @@
+<!-- swiper 千万不要在外面加上任何标签 例如 <view> 之类的，如果加了可能会导致轮播图出不来 -->
+<swiper indicator-dots="{{indicatorDots}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActiveColor}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular='{{circular}}' style="height:{{imageHeight}}px;" >
+    <block wx:for="{{img}}" wx:key="*this">
+        <swiper-item class="slide-image">
+            <image src="{{item}}" style="width:{{imageWidth}}px;height:{{imageHeight}}px;" bindload='imageLoad' />
+        </swiper-item>
+    </block>
+</swiper>
